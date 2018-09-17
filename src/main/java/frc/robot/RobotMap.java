@@ -33,8 +33,8 @@ public class RobotMap {
   public static int middleRightMotor = 5;
   public static int backRightMotor = 6;
   
-  public static int leftStick = 0; // driver joystick
-  public static int rightStick = 1; // operator joystick
+  public static int driverController = 0; // driver joystick
+  public static int operatorController = 1; // operator joystick
   
 
 }

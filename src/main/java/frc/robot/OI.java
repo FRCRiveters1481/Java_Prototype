@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-  public Joystick leftStick = new Joystick(RobotMap.leftStick);
-  public Joystick rightStick = new Joystick(RobotMap.rightStick);
+  public Joystick driverController = new Joystick(RobotMap.driverController);
+  public Joystick operatorController = new Joystick(RobotMap.operatorController);
  
 
 

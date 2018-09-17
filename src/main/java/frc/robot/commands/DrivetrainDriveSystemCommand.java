@@ -27,10 +27,10 @@ public class DrivetrainDriveSystemCommand extends Command {
     @Override
     protected void execute() {
         //Values used for Tank Drive
-        double rightJoystickY = Robot.m_oi.leftStick.getRawAxis(1);
-        double leftJoystickY = Robot.m_oi.rightStick.getRawAxis(4);
+        double throttleJoystick = Robot.m_oi.driverController.getRawAxis(1);
+        double steerJoystick = Robot.m_oi.operatorController.getRawAxis(4);
 
-        Robot.m_driveSubsystem.m_drive.arcadeDrive(leftJoystickY, rightJoystickY);
+        Robot.m_driveSubsystem.m_drive.arcadeDrive(throttleJoystick, steerJoystick);
         
     }
 
