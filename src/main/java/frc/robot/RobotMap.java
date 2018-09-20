@@ -26,12 +26,12 @@ public class RobotMap {
 
   //SRX
   public static int frontLeftMotor = 1;
-  public static int middleLeftMotor = 2;
+  public static int middleLeftMotor = 5;
   public static int backLeftMotor = 3;
   
-  public static int frontRightMotor = 4;
-  public static int middleRightMotor = 5;
-  public static int backRightMotor = 6;
+  public static int frontRightMotor = 2;
+  public static int middleRightMotor = 6;
+  public static int backRightMotor = 4;
   
   public static int driverController = 0; // driver joystick
   public static int operatorController = 1; // operator joystick

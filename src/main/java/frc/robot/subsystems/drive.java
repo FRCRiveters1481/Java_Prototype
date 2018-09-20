@@ -29,18 +29,16 @@ WPI_VictorSPX m_midLeft = new WPI_VictorSPX(RobotMap.middleLeftMotor);
 WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(RobotMap.backLeftMotor);
 
 //m_frontLeft.setInverted(true);
-//m_midLeft.setInverted(true);
 //m_rearLeft.setInverted(true);
 SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
 
 WPI_VictorSPX m_frontRight = new WPI_VictorSPX(RobotMap.frontRightMotor);
 WPI_VictorSPX m_midRight = new WPI_VictorSPX(RobotMap.middleRightMotor);
 WPI_VictorSPX m_rearRight = new WPI_VictorSPX(RobotMap.backRightMotor);
- /*
-m_frontRight.getInverted(); 
-m_midRight.setInverted(true);
-m_rearRight.setInverted(true);
-*/
+
+//m_frontRight.getInverted(); 
+//m_rearRight.setInverted(true);
+
 SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
 
 public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
@@ -55,5 +53,7 @@ public void periodic() {
 public void initDefaultCommand() {
     //setDefaultCommand(new DriveCommand());
     setDefaultCommand(new DrivetrainDriveSystemCommand());
+    m_midLeft.setInverted(true);
+    m_midRight.setInverted(true);
 }
 }
