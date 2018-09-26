@@ -1,0 +1,25 @@
+Drive
+  Data flow
+    Inputs
+      Joystick values will be used to determine driver intentions for speed and direction of robot
+      
+    Outputs
+      Drive motors will be driven based on the 
+
+  Control flow
+
+Elevator
+  Data flow
+  
+  Control flow
+
+Intake
+  Data flow
+  
+  Control flow
+
+Wrist
+  Data flow
+  
+  Control flow
+
