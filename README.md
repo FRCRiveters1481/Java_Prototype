@@ -1,7 +1,7 @@
-# Java_Prototype
+ # Java_Prototype
 Our code for the off season. 
 
-Plans for 27 Sep 2018
+Plans for 27 Sep 2018 and beyond . . .
 
 1. Create document to hold I/O sheet info, data flow & control flow 
 2. Define data flow and control flow for each subsystem
