@@ -4,14 +4,23 @@ This file defines the I/O for the robot
 
 Driver Joystick (0)
 
+  public static int driverController = 0; // driver joystick
+
 
 
 Operator Joystick (1)
 
+    public static int operatorController = 1; // operator joystick
 
 
 Drive Motors
-
+  public static int frontLeftMotor = 1;
+  public static int middleLeftMotor = 5;
+  public static int backLeftMotor = 3;
+  
+  public static int frontRightMotor = 2;
+  public static int middleRightMotor = 6;
+  public static int backRightMotor = 4;
 
 Elevator motor
 
@@ -23,3 +32,5 @@ Wrist motor
 
 
 PTO / climb motor
+
+
