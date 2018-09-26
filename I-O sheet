@@ -1,1 +1,25 @@
-This is the file that will define the I/O for the robot
+This file defines the I/O for the robot
+
+
+
+Driver Joystick (0)
+
+
+
+Operator Joystick (1)
+
+
+
+Drive Motors
+
+
+
+Elevator motor
+
+
+
+Wrist motor
+
+
+
+PTO / climb motor
