@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static drive m_driveSubsystem = new drive();
+  public static elevator m_elevator = new elevator();
 
 
   Command m_autonomousCommand;

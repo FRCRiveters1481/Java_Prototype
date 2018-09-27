@@ -53,7 +53,9 @@ public void periodic() {
 public void initDefaultCommand() {
     //setDefaultCommand(new DriveCommand());
     setDefaultCommand(new DrivetrainDriveSystemCommand());
-    m_midLeft.setInverted(true);
-    m_midRight.setInverted(true);
+   
+
+    m_rearLeft.setInverted(true);//motor #3
+    m_rearRight.setInverted(true);//motor #4
 }
 }
