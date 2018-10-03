@@ -41,4 +41,10 @@ public class RobotMap {
   public static int operatorController = 1; // operator joystick
   public final static int PID_PRIMARY = 0;
 
+  public static int intake_talon_1 = 9;
+  public static int intake_talon_2 = 10; 
+
+  public static int IntakeSpeed = 500; // controls speed of motor for intake
+  public static int JoystickActive = 0.5; 
+  public static int IntakeStop = 0; 
 }
