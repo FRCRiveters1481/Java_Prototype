@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.intake;
+import frc.robot.RobotMap;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -39,8 +41,20 @@ public class IntakeCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {        
-     
+  protected void execute() { 
+    if (m_intakeCommand == intakeDirection.In) {
+        Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
+
+    }   
+    if (m_intakeCommand == intakeDirection.Out) {
+        Robot.m_intake.setSpeed(RobotMap.intakeOutSpeed);
+      
+    }  
+    if (m_intakeCommand == intakeDirection.Hold) {
+            Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+          
+    }  
+
     
 
     

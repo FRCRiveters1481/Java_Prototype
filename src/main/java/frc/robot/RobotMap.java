@@ -45,7 +45,8 @@ public class RobotMap {
   public static int intakeRightMotorPort  = 10; 
 
   public static double intakeSpeed = 0.8; // controls speed of motor for intake
-  public static double intakeHoldSpeed = 0.8; // controls speed of motor for intake
+  public static double intakeOutSpeed = -0.8; // controls speed of motor for intake 
+  public static double intakeHoldSpeed = 0.3; // controls speed of motor for intake
    
   //operator controller axis mapping 
   public static final int  intakeOutButtonNumber = 2;
