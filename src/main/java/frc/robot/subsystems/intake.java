@@ -9,14 +9,16 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
-import frc.robot.commands.ElevatorManualCommand;
+import frc.robot.commands.*;
 import com.ctre.phoenix.motorcontrol.*;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class intake extends Subsystem {
-private static WPI_TalonSRX m_intake_talon_1 = new WPI_TalonSRX (RobotMap.intake_talon_1);
-private static WPI_TalonSRX m_intake_talon_2 = new WPI_TalonSRX (RobotMap.intake_talon_2);
+private static WPI_TalonSRX intakeLeftMotor = new WPI_TalonSRX (RobotMap.intakeLeftMotorPort);
+private static WPI_TalonSRX intakeRightMotor = new WPI_TalonSRX (RobotMap.intakeRightMotorPort);
+private SpeedControllerGroup intakeMotors = new SpeedControllerGroup(intakeLeftMotor,intakeRightMotor);
 
 
 
@@ -31,11 +33,17 @@ public void periodic() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new IntakeCommand());
+    intakeRightMotor.setInverted(true);
 
   }
 // set the speed of the intake motor 
   public void setSpeed(double speed){
-      intake_talon_1.setSpeed(IntakeSetSpeed);
-      intake_talon_2.setSpeed(IntakeSetSpeed);
+      intakeMotors.set(speed);
+      
+  }
+//set hold speed
+  public void hold() {
+      intakeMotors.set(RobotMap.intakeHoldSpeed);
+      
   }
 }

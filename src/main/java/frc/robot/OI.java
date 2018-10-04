@@ -19,8 +19,10 @@ public class OI {
 
   public Joystick driverController = new Joystick(RobotMap.driverController);
   public Joystick operatorController = new Joystick(RobotMap.operatorController);
- 
 
+
+ 
+  Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInButtonNumber);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

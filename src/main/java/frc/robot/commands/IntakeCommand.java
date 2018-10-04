@@ -13,7 +13,20 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
+
 public class IntakeCommand extends Command {
+    
+    public enum intakeDirection{
+        In, Out,  Hold
+    };
+    private intakeDirection m_intakeCommand;
+
+  public IntakeCommand(intakeDirection command) {
+     m_intakeCommand = command;
+
+    // Use requires() here to declare subsystem dependencies
+    requires(Robot.m_subsystem);
+  }
   public IntakeCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
@@ -27,16 +40,10 @@ public class IntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {        
-    double intakeJoystick = Robot.m_oi.driverController.getRawAxis(3);
-    double stopJoystick = Robot.m_oi.operatorController.getRawAxis(2); 
+     
     
 
-    // If intake joytick is active start intake motor 
-    // If stop joystickk is active stop intake motor 
-    if (intakeJoystick > Robot.JoystickActive)
-        IntakeSetSpeed = Robot.IntakeSpeed;
-    if (stopJoystick > Robot.JoystickActive)
-        IntakeSetSpeed =  Robot.IntakeStop;
+    
     
   }
 

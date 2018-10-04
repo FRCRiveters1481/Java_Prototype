@@ -42,7 +42,7 @@ public void periodic() {
 		m_elevator_talon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
   }
   public void elevatorJog(ElevatorDirection Direction ) {
-    getQuadraturePosition();
+    //getQuadraturePosition();
 
 
   }
