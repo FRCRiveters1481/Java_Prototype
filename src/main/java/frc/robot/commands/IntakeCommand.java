@@ -27,11 +27,11 @@ public class IntakeCommand extends Command {
      m_intakeCommand = command;
 
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.m_intake);
   }
   public IntakeCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.m_intake);
   }
 
   // Called just before this Command runs the first time
@@ -42,9 +42,15 @@ public class IntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() { 
-    if (m_intakeCommand == intakeDirection.In) {
-        Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
+    if (m_intakeCommand == intakeDirection.In) {  
+      Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
 
+      if(Robot.m_oi.driverController.getRawAxis(RobotMap.intakeInAxisNumber) > RobotMap.buttonPressed){
+         Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
+      }
+      else {
+        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+      }
     }   
     if (m_intakeCommand == intakeDirection.Out) {
         Robot.m_intake.setSpeed(RobotMap.intakeOutSpeed);

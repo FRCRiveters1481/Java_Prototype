@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import frc.robot.commands.DrivetrainDriveSystemCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.drive;
+import frc.robot.RobotMap;
 
 /**
  *
@@ -27,8 +28,8 @@ public class DrivetrainDriveSystemCommand extends Command {
     @Override
     protected void execute() {
         //Values used for Tank Drive
-        double throttleJoystick = Robot.m_oi.driverController.getRawAxis(1);
-        double steerJoystick = Robot.m_oi.operatorController.getRawAxis(4);
+        double throttleJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.forwardReverseAxis);
+        double steerJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.leftRightAxis);
         
         Robot.m_driveSubsystem.m_drive.arcadeDrive(throttleJoystick, steerJoystick);
         

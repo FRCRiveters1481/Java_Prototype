@@ -23,7 +23,7 @@ public class OI {
 
 
  
-  Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInButtonNumber);
+  Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -53,7 +53,7 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
   public OI() {
-    buttonIn.whenPressed(new IntakeCommand(IntakeCommand.intakeDirection.In));
+    buttonIn.whileHeld(new IntakeCommand(IntakeCommand.intakeDirection.In));
 
   }
 }

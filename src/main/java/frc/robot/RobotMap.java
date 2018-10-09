@@ -39,17 +39,20 @@ public class RobotMap {
   
   public static int driverController = 0; // driver joystick
   public static int operatorController = 1; // operator joystick
+  public static int forwardReverseAxis = 1;
+  public static int leftRightAxis = 4;
   public final static int PID_PRIMARY = 0;
 
   public static int intakeLeftMotorPort = 9;
-  public static int intakeRightMotorPort  = 10; 
+  public static int intakeRightMotorPort  = 11; 
 
-  public static double intakeSpeed = 0.8; // controls speed of motor for intake
-  public static double intakeOutSpeed = -0.8; // controls speed of motor for intake 
+  public static double intakeSpeed = 0.5; // controls speed of motor for intake
+  public static double intakeOutSpeed = -0.5; // controls speed of motor for intake 
   public static double intakeHoldSpeed = 0.3; // controls speed of motor for intake
-   
+  public static double buttonPressed =  0.5; 
+
   //operator controller axis mapping 
-  public static final int  intakeOutButtonNumber = 2;
-  public static final int  intakeInButtonNumber = 3;
+  public static final int  intakeOutAxisNumber = 2;
+  public static final int  intakeInAxisNumber = 3;
 
 }
