@@ -24,6 +24,7 @@ public class OI {
 
  
   Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
+  // Button buttonOut = new JoystickButton(driverController, RobotMap.intakeOutAxisNumber);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

@@ -41,24 +41,29 @@ public class IntakeCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() { 
+  protected void execute() {
+    double intakeInTrigger = Robot.m_oi.driverController.getRawAxis(RobotMap.intakeInAxisNumber);
+    double intakeOutTrigger = Robot.m_oi.driverController.getRawAxis(RobotMap.intakeOutAxisNumber); 
     if (m_intakeCommand == intakeDirection.In) {  
-      Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
 
-      if(Robot.m_oi.driverController.getRawAxis(RobotMap.intakeInAxisNumber) > RobotMap.buttonPressed){
-         Robot.m_intake.setSpeed(RobotMap.intakeSpeed);
+      if(intakeInTrigger > RobotMap.joystickIsActive){
+         Robot.m_intake.setSpeed(intakeInTrigger);
       }
       else {
-        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed); 
       }
     }   
     if (m_intakeCommand == intakeDirection.Out) {
-        Robot.m_intake.setSpeed(RobotMap.intakeOutSpeed);
-      
+
+      if(intakeOutTrigger > RobotMap.joystickIsActive){
+        Robot.m_intake.setSpeed(intakeOutTrigger);
+      }
+      else {
+        Robot.m_intake.setSpeed(RobotMap.intakeStop);
+      }
     }  
     if (m_intakeCommand == intakeDirection.Hold) {
             Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
-          
     }  
 
     

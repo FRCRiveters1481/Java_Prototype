@@ -24,7 +24,12 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  //SRX
+  /**
+   *
+   */
+
+  private static final int _500 = 500;
+  // SRX
   public static int frontLeftMotor = 1;
   public static int middleLeftMotor = 5;
   public static int backLeftMotor = 3;
@@ -41,18 +46,18 @@ public class RobotMap {
   public static int operatorController = 1; // operator joystick
   public static int forwardReverseAxis = 1;
   public static int leftRightAxis = 4;
+  
   public final static int PID_PRIMARY = 0;
 
-  public static int intakeLeftMotorPort = 9;
-  public static int intakeRightMotorPort  = 11; 
+  public static int intake_talon_1 = 9;
+  public static int intake_talon_2 = 10; 
 
-  public static double intakeSpeed = 0.5; // controls speed of motor for intake
-  public static double intakeOutSpeed = -0.5; // controls speed of motor for intake 
-  public static double intakeHoldSpeed = 0.3; // controls speed of motor for intake
-  public static double buttonPressed =  0.5; 
+  public static double intakeInSpeed = 0.5; // controls speed of motors for bringing in a cube
+  public static double intakeOutSpeed = -0.5; // controls speed of motors for shooting out a cube
+  public static double intakeHoldSpeed = 0.3; // controls speed of motors to hold cube
+  public static double joystickIsActive = 0.1; 
+  public static int intakeStop = 0; 
 
-  //operator controller axis mapping 
-  public static final int  intakeOutAxisNumber = 2;
-  public static final int  intakeInAxisNumber = 3;
-
+  public static int intakeInAxisNumber = 3;
+  public static int intakeOutAxisNumber = 2;
 }
