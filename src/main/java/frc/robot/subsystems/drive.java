@@ -12,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.commands.DrivetrainDriveSystemCommand;
 
@@ -28,16 +27,11 @@ WPI_VictorSPX m_frontLeft = new WPI_VictorSPX(RobotMap.frontLeftMotor);
 WPI_VictorSPX m_midLeft = new WPI_VictorSPX(RobotMap.middleLeftMotor);
 WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(RobotMap.backLeftMotor);
 
-//m_frontLeft.setInverted(true);
-//m_rearLeft.setInverted(true);
 SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
 
 WPI_VictorSPX m_frontRight = new WPI_VictorSPX(RobotMap.frontRightMotor);
 WPI_VictorSPX m_midRight = new WPI_VictorSPX(RobotMap.middleRightMotor);
 WPI_VictorSPX m_rearRight = new WPI_VictorSPX(RobotMap.backRightMotor);
-
-//m_frontRight.getInverted(); 
-//m_rearRight.setInverted(true);
 
 SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
 
@@ -52,9 +46,9 @@ public void periodic() {
 @Override
 public void initDefaultCommand() {
     //setDefaultCommand(new DriveCommand());
-    setDefaultCommand(new DrivetrainDriveSystemCommand());
-   
+    setDefaultCommand(new DrivetrainDriveSystemCommand());  
 
+    // *** These two inversions are for 1481_Delta bot *** //
     m_rearLeft.setInverted(true);//motor #3
     m_rearRight.setInverted(true);//motor #4
 }

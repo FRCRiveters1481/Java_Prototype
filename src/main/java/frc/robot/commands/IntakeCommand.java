@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.intake;
 import frc.robot.RobotMap;
 
 /**
@@ -56,20 +55,12 @@ public class IntakeCommand extends Command {
     if (m_intakeCommand == intakeDirection.Out) {
 
       if(intakeOutTrigger > RobotMap.joystickIsActive){
-        Robot.m_intake.setSpeed(intakeOutTrigger);
+        Robot.m_intake.setSpeed(RobotMap.intakeOutSpeed);
       }
       else {
         Robot.m_intake.setSpeed(RobotMap.intakeStop);
       }
     }  
-    if (m_intakeCommand == intakeDirection.Hold) {
-            Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
-    }  
-
-    
-
-    
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

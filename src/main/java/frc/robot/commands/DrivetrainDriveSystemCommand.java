@@ -2,11 +2,8 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-import edu.wpi.first.wpilibj.RobotController;
-
 import frc.robot.commands.DrivetrainDriveSystemCommand;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.drive;
 import frc.robot.RobotMap;
 
 /**

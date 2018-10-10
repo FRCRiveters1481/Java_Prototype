@@ -7,11 +7,9 @@
 
 package frc.robot.subsystems;
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
-import frc.robot.commands.ElevatorManualCommand;
-import com.ctre.phoenix.motorcontrol.*;
+
 import frc.robot.commands.IntakeCommand;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

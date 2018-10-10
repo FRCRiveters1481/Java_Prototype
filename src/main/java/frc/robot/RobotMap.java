@@ -28,7 +28,6 @@ public class RobotMap {
    *
    */
 
-  private static final int _500 = 500;
   // SRX
   public static int frontLeftMotor = 1;
   public static int middleLeftMotor = 5;
@@ -46,7 +45,7 @@ public class RobotMap {
   public static int operatorController = 1; // operator joystick
   public static int forwardReverseAxis = 1;
   public static int leftRightAxis = 4;
-  
+
   public final static int PID_PRIMARY = 0;
 
   public static int intake_talon_1 = 9;
