@@ -8,7 +8,7 @@ Plans for 26 Sep 2018 and beyond . . .
 3. Define data flow and control flow for each subsystem
 4. Define other details for each subsystem
 5. Code Elevator
-6. Code Wrist
-7. Code Intake
+6. Code Intake
+7. Code Wrist
 8. Code Auton
 
