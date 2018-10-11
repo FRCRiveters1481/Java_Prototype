@@ -4,22 +4,40 @@ Drive
       Joystick values will be used to determine driver intentions for speed and direction of robot
       
     Outputs
-      Drive motors will be driven based on the 
+      Drive motors will be driven based on the joysticks. 
 
   Control flow
+    Drive command runs every 20 ms to read joystick values and set output motors.
 
 Elevator
   Data flow
-  
+    Inputs
+      
+
+    Outputs
   Control flow
 
 Intake
   Data flow
+    Inputs
+      Joystick values will be used to determine driver intentions for intake. Right trigger for cube in. Left trigger for cube out.
+      Both in and out speeds will be modulated based on how far the trigger is pulled.
+      The intake will spin in the in direction to hold the cube whenever neither trigger is pulled.
+
+    Outputs
+      Left and right intake motors to intake, hold, and expel cubes.
+      Motors spin in opposite directions to manipulate cubes.
   
   Control flow
+    Intake command runs every 20 ms to read joystick values and set output motors.
+
 
 Wrist
   Data flow
-  
+    Inputs
+
+
+    Outputs
+
   Control flow
 
