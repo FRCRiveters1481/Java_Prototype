@@ -23,7 +23,7 @@ public class OI {
 
 
  
-  Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
+  // Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
   // Button buttonOut = new JoystickButton(driverController, RobotMap.intakeOutAxisNumber);
 
   //// CREATING BUTTONS
@@ -54,7 +54,7 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
   public OI() {
-    buttonIn.whileHeld(new IntakeCommand(IntakeCommand.intakeDirection.In));
+  //  buttonIn.whileHeld(new IntakeCommand(IntakeCommand.intakeDirection.In));
 
   }
 }

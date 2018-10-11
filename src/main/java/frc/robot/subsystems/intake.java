@@ -35,7 +35,7 @@ public void periodic() {
   }
 // set the speed of the intake motor 
   public void setSpeed(double speed){
-      m_intake_talon_1.set(speed);
+      m_intake_talon_1.set(-speed);
       m_intake_talon_2.set(speed);
   }
 }

@@ -43,25 +43,22 @@ public class IntakeCommand extends Command {
   protected void execute() {
     double intakeInTrigger = Robot.m_oi.driverController.getRawAxis(RobotMap.intakeInAxisNumber);
     double intakeOutTrigger = Robot.m_oi.driverController.getRawAxis(RobotMap.intakeOutAxisNumber); 
-    if (m_intakeCommand == intakeDirection.In) {  
+       
 
       if(intakeInTrigger > RobotMap.joystickIsActive){
-         Robot.m_intake.setSpeed(intakeInTrigger);
+        Robot.m_intake.setSpeed(intakeInTrigger); 
+      }
+     
+      if (intakeOutTrigger > RobotMap.joystickIsActive){
+        Robot.m_intake.setSpeed(-intakeOutTrigger);
+      }
+      if ((intakeOutTrigger > RobotMap.joystickIsActive) | (intakeInTrigger > RobotMap.joystickIsActive)){ 
       }
       else {
-        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed); 
-      }
-    }   
-    if (m_intakeCommand == intakeDirection.Out) {
-
-      if(intakeOutTrigger > RobotMap.joystickIsActive){
-        Robot.m_intake.setSpeed(RobotMap.intakeOutSpeed);
-      }
-      else {
-        Robot.m_intake.setSpeed(RobotMap.intakeStop);
+        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
       }
     }  
-  }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
