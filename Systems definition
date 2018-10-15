@@ -2,7 +2,9 @@ Drive
   Data flow
     Inputs
       Joystick values will be used to determine driver intentions for speed and direction of robot
-      
+      Left joystick for forward/backward.
+      Right joystick for left/right.
+
     Outputs
       Drive motors will be driven based on the joysticks. 
 
@@ -12,15 +14,22 @@ Drive
 Elevator
   Data flow
     Inputs
-      
+      Button (which buttons?) command or auton command
+      Encoder pulses  
 
     Outputs
+      Elevator motor will be driven based on joystick or auton inputs
+  
   Control flow
+    ElevatorManual command runs every 20 ms to read joystick values and set output motors
+    elevatorUp auton command will run based on auton sequence
 
 Intake
   Data flow
     Inputs
-      Joystick values will be used to determine driver intentions for intake. Right trigger for cube in. Left trigger for cube out.
+      Joystick values will be used to determine driver intentions for intake. 
+      Right trigger for cube in. 
+      Left trigger for cube out.
       Both in and out speeds will be modulated based on how far the trigger is pulled.
       The intake will spin in the in direction to hold the cube whenever neither trigger is pulled.
 
@@ -35,9 +44,12 @@ Intake
 Wrist
   Data flow
     Inputs
-
+      Wrist buttons (which buttons?) for up or down or auton command for wristDown
+      Encoder for measureing speed of wrist
+      Limit switches for wrist all the way up or all the way down
 
     Outputs
-
+      Wrist motor will be commanded in up or down direction based on buttons or wristDown auton command
+      
   Control flow
 

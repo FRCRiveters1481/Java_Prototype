@@ -13,7 +13,10 @@ Operator Joystick (1)
     public static int operatorController = 1; // operator joystick
 
 
-Drive Motors
+Drive joystic Axes and Motors
+  public static int forwardReverseAxis = 1;
+  public static int leftRightAxis = 4;
+
   public static int frontLeftMotor = 1;
   public static int middleLeftMotor = 5;
   public static int backLeftMotor = 3;
@@ -25,12 +28,16 @@ Drive Motors
 Elevator motor
 
 
-Intake motor
+Intake Axes and Motors
+  public static int intakeInAxisNumber = 3;
+  public static int intakeOutAxisNumber = 2;
+
+  public static int intake_talon_1 = 11;
+  public static int intake_talon_2 = 10;
+
+Wrist Buttons & Motor
 
 
-Wrist motor
-
-
-PTO / climb motor
+Climb Button & Motor
 
 
