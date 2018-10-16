@@ -8,6 +8,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class WristManualCommand extends Command {
   public WristManualCommand() {
@@ -23,7 +25,36 @@ public class WristManualCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  }
+    double wristtUpTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristUpAxisNumber);
+    double wristDownTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristDownAxisNumber); 
+       
+
+    // if wristUpTrigger is pulled, move the wrist up
+      if(wristtUpTrigger > RobotMap.joystickIsActive){
+        Robot.m_intake.setSpeed(RobotMap.wristUpSpeed); 
+      }
+      // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
+     else { 
+        if(wristDownTrigger > RobotMap.joystickIsActive){
+          Robot.m_intake.setSpeed(RobotMap.wristDownSpeed); 
+        }
+        // if neither trigger is pulled, set wrist speed to stop
+        else {
+          Robot.m_intake.setSpeed(RobotMap.wristMotorStop);
+        }
+     }
+
+      //if (intakeOutTrigger > RobotMap.joystickIsActive){
+      //  Robot.m_intake.setSpeed(-intakeOutTrigger);
+      //}
+      //if ((intakeOutTrigger > RobotMap.joystickIsActive) | (intakeInTrigger > RobotMap.joystickIsActive)){ 
+      //}
+      //else {
+      //  Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+      //}
+    }  
+
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

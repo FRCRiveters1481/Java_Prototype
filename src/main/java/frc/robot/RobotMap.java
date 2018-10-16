@@ -58,12 +58,13 @@ public class RobotMap {
   public static int intakeStop = 0; 
 
   public static int intakeInAxisNumber = 3;
-  public static int intakeOutAxisNumber = 2
+  public static int intakeOutAxisNumber = 2;
   
   public static int wristMotor = 8;
   public static int wristUpAxisNumber = 2;
   public static int wristDownAxisNumber = 3;
 
-  public static double wristDefaultSpeed = 0.3;
+  public static double wristDownSpeed = 0.3;
+  public static double wristUpSpeed = 0.5;
   public static int wristMotorStop = 0; 
 }
