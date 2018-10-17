@@ -43,15 +43,6 @@ public class WristManualCommand extends Command {
           Robot.m_intake.setSpeed(RobotMap.wristMotorStop);
         }
      }
-
-      //if (intakeOutTrigger > RobotMap.joystickIsActive){
-      //  Robot.m_intake.setSpeed(-intakeOutTrigger);
-      //}
-      //if ((intakeOutTrigger > RobotMap.joystickIsActive) | (intakeInTrigger > RobotMap.joystickIsActive)){ 
-      //}
-      //else {
-      //  Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
-      //}
     }  
 
   
