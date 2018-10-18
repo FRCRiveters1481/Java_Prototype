@@ -25,8 +25,16 @@ Drive joystic Axes and Motors
   public static int middleRightMotor = 6;
   public static int backRightMotor = 4;
 
-Elevator motor
+Elevator manual controls
+  Elevator Jog
+    Up
 
+    Down
+
+  Elevator POV
+
+Elevator motor
+  public static int elevator_talon = 7;
 
 Intake Axes and Motors
   public static int intakeInAxisNumber = 3;
