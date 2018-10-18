@@ -15,6 +15,7 @@ public class WristManualCommand extends Command {
   public WristManualCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_wrist);
   }
 
   // Called just before this Command runs the first time
@@ -25,22 +26,22 @@ public class WristManualCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double wristtUpTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristUpAxisNumber);
+    double wristUpTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristUpAxisNumber);
     double wristDownTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristDownAxisNumber); 
        
 
     // if wristUpTrigger is pulled, move the wrist up
-      if(wristtUpTrigger > RobotMap.joystickIsActive){
-        Robot.m_intake.setSpeed(RobotMap.wristUpSpeed); 
+      if(wristUpTrigger > RobotMap.joystickIsActive){
+        Robot.m_wrist.setSpeed(RobotMap.wristUpSpeed); 
       }
       // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
      else { 
         if(wristDownTrigger > RobotMap.joystickIsActive){
-          Robot.m_intake.setSpeed(RobotMap.wristDownSpeed); 
+          Robot.m_wrist.setSpeed(RobotMap.wristDownSpeed); 
         }
         // if neither trigger is pulled, set wrist speed to stop
         else {
-          Robot.m_intake.setSpeed(RobotMap.wristMotorStop);
+          Robot.m_wrist.setSpeed(RobotMap.wristMotorStop);
         }
      }
     }  

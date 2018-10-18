@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
-
 import frc.robot.commands.WristManualCommand;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

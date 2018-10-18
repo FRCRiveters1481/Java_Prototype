@@ -18,7 +18,6 @@ public class OI {
   public Joystick driverController = new Joystick(RobotMap.driverController);
   public Joystick operatorController = new Joystick(RobotMap.operatorController);
 
-
  
   // Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
   // Button buttonOut = new JoystickButton(driverController, RobotMap.intakeOutAxisNumber);
