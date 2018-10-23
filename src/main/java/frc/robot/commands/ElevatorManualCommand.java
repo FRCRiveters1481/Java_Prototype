@@ -28,10 +28,10 @@ public class ElevatorManualCommand extends Command {
   };
 
 public ElevatorManualCommand(elevatorPosition commandedPosition){
- 
+ requires(Robot.m_elevator);
   
 switch (commandedPosition) {
-  case Floor:
+  case Floor: 
    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
     break;
   case Switch:
@@ -60,6 +60,18 @@ elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    int POVJoystick = Robot.m_oi.operatorController.getPOV();
+    switch (POVJoystick) {
+      case 180:
+      ElevatorManualCommand(Floor);
+      break;
+      case 135:
+      ElevatorManualCommand(Switch);
+      break;
+      case 0:
+      ElevatorManualCommand(highScale);
+      break;
+    }
 
   }
 

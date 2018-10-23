@@ -15,7 +15,7 @@ import com.ctre.phoenix.motorcontrol.*;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class elevator extends Subsystem {
-public static WPI_TalonSRX m_elevator_talon = new WPI_TalonSRX (RobotMap.elevator_talon);
+public static WPI_TalonSRX m_elevator_talon = new WPI_TalonSRX (RobotMap.elevator_talon);                                       //nothing here!!
 public enum  ElevatorDirection {
   Up, Down, Hold
 };
