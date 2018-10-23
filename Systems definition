@@ -14,7 +14,7 @@ Drive
 Elevator
   Data flow
     Inputs
-      Button (which buttons?) command or auton command
+      POV Button command or auton command
       Encoder pulses  
 
     Outputs

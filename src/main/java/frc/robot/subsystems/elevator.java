@@ -32,14 +32,39 @@ public void periodic() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new ElevatorManualCommand());
+
 		m_elevator_talon.configSelectedFeedbackSensor(	FeedbackDevice.QuadEncoder,				// Local Feedback Source
 
 		RobotMap.PID_PRIMARY,					// PID Slot for Source [0, 1]
 
     RobotMap.kTimeoutMs);	
+    
     m_elevator_talon.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, RobotMap.kTimeoutMs);				// Feedback Device of Remote Talon
 
-		m_elevator_talon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
+    
+    m_elevator_talon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
+
+    switch (RobotMap.elevatorCommandedPosition) {
+      case RobotMap.floorHeight: 
+       elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
+        break;
+
+      case RobotMap.switchHeight:
+    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
+        break;
+
+      case RobotMap.lowScaleHeight:
+    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
+        break;
+
+      case RobotMap.highScaleHeight:
+    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
+        break;
+    
+      default:
+      
+        break;
+    }
   }
   public void elevatorJog(ElevatorDirection Direction ) {
     //getQuadraturePosition();

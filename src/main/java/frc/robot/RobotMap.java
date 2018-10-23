@@ -41,10 +41,12 @@ public class RobotMap {
   public static int elevator_talon = 7;
   public final static int kTimeoutMs = 30;
 public static double elevatorGearDiameter= 2.1;//this is not the real number this is a non magical number.  
-public static int floorHeight = 0;
-public static int  switchHeight = 4096;
-public static int  lowScaleHeight = 8192;
-public static int highScaleHeight = 12288;
+public final static int hold = -1;
+public final static int floorHeight = 0;
+public final static int  switchHeight = 4096;
+public final static int  lowScaleHeight = 8192;
+public final static int highScaleHeight = 12288;
+public static int elevatorCommandedPosition = hold;
 
 
 

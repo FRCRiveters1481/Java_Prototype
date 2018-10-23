@@ -23,34 +23,18 @@ public class ElevatorManualCommand extends Command {
   
   }
   public enum elevatorPosition {
-    Floor , Switch, lowScale, highScale
+    Hold, Floor , Switch, LowScale, HighScale;
   
   };
 
 public ElevatorManualCommand(elevatorPosition commandedPosition){
  requires(Robot.m_elevator);
   
-switch (commandedPosition) {
-  case Floor: 
-   elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
-    break;
-  case Switch:
 
-elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
-    break;
-  case lowScale:
-elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
-    break;
-  case highScale:
-elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
-    break;
-
-  default:
-    break;
     
 }
 
-}
+
 
   // Called just before this Command runs the first time
   @Override
@@ -63,13 +47,17 @@ elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
     switch (POVJoystick) {
       case 180:
-      ElevatorManualCommand(Floor);
+      RobotMap.elevatorCommandedPosition = RobotMap.floorHeight;
       break;
+
       case 135:
-      ElevatorManualCommand(Switch);
+      RobotMap.elevatorCommandedPosition = RobotMap.switchHeight;
       break;
       case 0:
-      ElevatorManualCommand(highScale);
+      RobotMap.elevatorCommandedPosition = RobotMap.highScaleHeight;
+      break;
+      default:
+      RobotMap.elevatorCommandedPosition = RobotMap.hold;
       break;
     }
 
