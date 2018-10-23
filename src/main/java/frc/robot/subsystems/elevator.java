@@ -45,24 +45,28 @@ public void periodic() {
     m_elevator_talon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
 
     switch (RobotMap.elevatorCommandedPosition) {
+      case RobotMap.hold:
+          // This is the same action as the default
+        break;
+      
       case RobotMap.floorHeight: 
-       elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
+        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
         break;
 
       case RobotMap.switchHeight:
-    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
+        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
         break;
 
       case RobotMap.lowScaleHeight:
-    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
+      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
         break;
 
       case RobotMap.highScaleHeight:
-    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
+        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
         break;
     
       default:
-      
+      // Need the default action to be hold the current position
         break;
     }
   }
