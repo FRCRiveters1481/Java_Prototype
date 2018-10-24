@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.ElevatorManualCommand;
 import com.ctre.phoenix.motorcontrol.*;
+import edu.wpi.first.wpilibj.DriverStation;
+import java.lang.String;
+
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
@@ -32,6 +35,7 @@ public void periodic() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new ElevatorManualCommand());
+  
 
 		m_elevator_talon.configSelectedFeedbackSensor(	FeedbackDevice.QuadEncoder,				// Local Feedback Source
 

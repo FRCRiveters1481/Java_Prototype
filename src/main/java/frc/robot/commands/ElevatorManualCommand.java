@@ -12,7 +12,9 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.elevator;
 import com.ctre.phoenix.motorcontrol.*;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DriverStation;
+import java.lang.String;
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -39,12 +41,18 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    DriverStation.reportError(new String("initialize"),false);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
+   String myDebugString =  new String();
+   //Robot.m_oi.operatorController.getRawAxis(4)
+   myDebugString.format("%2.2f axis",1.2345);
+    DriverStation.reportError(myDebugString,false);
     switch (POVJoystick) {
       case 180:
       RobotMap.elevatorCommandedPosition = RobotMap.floorHeight;
