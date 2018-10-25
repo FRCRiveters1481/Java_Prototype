@@ -42,7 +42,6 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
   @Override
   protected void initialize() {
 
-    DriverStation.reportError(new String("initialize"),false);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -51,8 +50,6 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
    String myDebugString =  new String();
    //Robot.m_oi.operatorController.getRawAxis(4)
-   myDebugString.format("%2.2f axis",1.2345);
-    DriverStation.reportError(myDebugString,false);
     switch (POVJoystick) {
       case 180:
       RobotMap.elevatorCommandedPosition = RobotMap.floorHeight;

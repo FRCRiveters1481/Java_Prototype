@@ -25,7 +25,33 @@ public enum  ElevatorDirection {
 
 
 public void periodic() {
+  switch (RobotMap.elevatorCommandedPosition) {
+    case RobotMap.hold:
+        // This is the same action as the default
+      break;
 
+    case RobotMap.floorHeight: 
+      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
+     // elevator.m_elevator_talon.set(ControlMode.PercentOutput, .5 );
+      System.out.print(String.format ("%d Elevator 21 \n" , (int) RobotMap.elevatorCommandedPosition));   
+      break;
+
+    case RobotMap.switchHeight:
+      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
+      break;
+
+    case RobotMap.lowScaleHeight:
+    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
+      break;
+
+    case RobotMap.highScaleHeight:
+      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
+      break;
+  
+    default:
+    // Need the default action to be hold the current position
+      break;
+  }
 
 
 }
@@ -47,32 +73,17 @@ public void periodic() {
 
     
     m_elevator_talon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
+    m_elevator_talon.configNominalOutputForward(0, 30); 
+    m_elevator_talon.configNominalOutputReverse(0, 30); 
+    m_elevator_talon.configPeakOutputForward(1, 30); 
+    m_elevator_talon.configPeakOutputReverse(-1, 30); 
+    m_elevator_talon.setSensorPhase(true);
+    m_elevator_talon.config_kF(0, 0.0, 30); 
+    m_elevator_talon.config_kP(0, 0.1, 30); 
+    m_elevator_talon.config_kI(0, 0.0, 30); 
+    m_elevator_talon.config_kD(0, 0.0, 30); 
 
-    switch (RobotMap.elevatorCommandedPosition) {
-      case RobotMap.hold:
-          // This is the same action as the default
-        break;
-      
-      case RobotMap.floorHeight: 
-        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
-        break;
-
-      case RobotMap.switchHeight:
-        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
-        break;
-
-      case RobotMap.lowScaleHeight:
-      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
-        break;
-
-      case RobotMap.highScaleHeight:
-        elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
-        break;
     
-      default:
-      // Need the default action to be hold the current position
-        break;
-    }
   }
   public void elevatorJog(ElevatorDirection Direction ) {
     //getQuadraturePosition();
