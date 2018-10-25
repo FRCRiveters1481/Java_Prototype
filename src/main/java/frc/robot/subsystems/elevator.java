@@ -77,7 +77,7 @@ public void periodic() {
     m_elevator_talon.configNominalOutputReverse(0, 30); 
     m_elevator_talon.configPeakOutputForward(1, 30); 
     m_elevator_talon.configPeakOutputReverse(-1, 30); 
-    m_elevator_talon.setSensorPhase(true);
+    m_elevator_talon.setSensorPhase(false);
     m_elevator_talon.config_kF(0, 0.0, 30); 
     m_elevator_talon.config_kP(0, 0.1, 30); 
     m_elevator_talon.config_kI(0, 0.0, 30); 
