@@ -11,8 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.ElevatorManualCommand;
 import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 import edu.wpi.first.wpilibj.DriverStation;
 import java.lang.String;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -23,6 +26,7 @@ public enum  ElevatorDirection {
   Up, Down, Hold
 };
 
+private static DigitalInput m_limitSwitchElevator = new DigitalInput(RobotMap.ElevatorLimitSwitchInput);
 
 public void periodic() {
   switch (RobotMap.elevatorCommandedPosition) {
@@ -54,6 +58,17 @@ public void periodic() {
   }
 
 
+  m_elevator_talon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
+  m_elevator_talon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
+  m_elevator_talon.config_kI(0,  SmartDashboard.getNumber("MotorKI", 0.0), 30); 
+  m_elevator_talon.config_kD(0,  SmartDashboard.getNumber("MotorKD", 0.0), 30); 
+
+  if (m_limitSwitchElevator.get() == false) {
+    m_elevator_talon.getSensorCollection().setQuadraturePosition(0,0);
+  }
+  SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
+  SmartDashboard.putNumber("ElevatorEncoderCounts",  m_elevator_talon.getSensorCollection().getQuadraturePosition());
+ 
 }
 
   @Override
@@ -83,6 +98,14 @@ public void periodic() {
     m_elevator_talon.config_kI(0, 0.0, 30); 
     m_elevator_talon.config_kD(0, 0.0, 30); 
 
+    SmartDashboard.putNumber("MotorKF", 0.0); 
+    SmartDashboard.putNumber("MotorKp", 3.0);
+    SmartDashboard.putNumber("MotorKI", 0.0);
+    SmartDashboard.putNumber("MotorKD", 0.0);
+
+    SmartDashboard.putNumber("ElevatorEncoderCounts", 0);
+
+    SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
     
   }
   public void elevatorJog(ElevatorDirection Direction ) {

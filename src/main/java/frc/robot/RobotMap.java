@@ -45,7 +45,7 @@ public final static int hold = -1;
 public final static int floorHeight = 0;
 public final static int  switchHeight = 4096;
 public final static int  lowScaleHeight = 8192;
-public final static int highScaleHeight = 12288;
+public final static int highScaleHeight = 21044;
 public static int elevatorCommandedPosition = hold;
 
 
@@ -76,4 +76,6 @@ public static int driverController = 0; // driver joystick
   public static double wristDownSpeed = -0.3;
   public static double wristUpSpeed = 0.5;
   public static int wristMotorStop = 0; 
+
+  public static int ElevatorLimitSwitchInput = 2;
 }
