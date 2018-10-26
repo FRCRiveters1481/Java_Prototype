@@ -44,7 +44,7 @@ public static double elevatorGearDiameter= 2.1;//this is not the real number thi
 public final static int hold = -1;
 public final static int floorHeight = 0;
 public final static int  switchHeight = 4096;
-public final static int  lowScaleHeight = 8192;
+public final static int  lowScaleHeight = 14116;
 public final static int highScaleHeight = 21044;
 public static int elevatorCommandedPosition = hold;
 
