@@ -31,11 +31,11 @@ public class DrivetrainDriveSystemCommand extends Command {
         double throttleJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.forwardReverseAxis);
         double steerJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.leftRightAxis);
         
-        Robot.m_driveSubsystem.m_drive.arcadeDrive(throttleJoystick, steerJoystick);
+        Robot.m_driveSubsystem.m_drive.arcadeDrive(-steerJoystick, throttleJoystick);
         
     }
 
-    @Override
+    @Override 
     protected boolean isFinished() {
         return false;
     }

@@ -48,8 +48,9 @@ public void initDefaultCommand() {
     //setDefaultCommand(new DriveCommand());
     setDefaultCommand(new DrivetrainDriveSystemCommand());  
 
-    // *** These two inversions are for 1481_Delta bot *** //
+    // *** These 3 inversions are for 1481_Beta bot *** //
     m_rearLeft.setInverted(true);//motor #3
-    m_rearRight.setInverted(true);//motor #4
+    m_frontLeft.setInverted(true);//motor #1
+    m_midLeft.setInverted(true);//motor #5
 }
 }
