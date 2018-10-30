@@ -8,14 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class WristManualCommand extends Command {
-  public WristManualCommand() {
+public class ElevatorJogDown extends Command {
+  public ElevatorJogDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_wrist);
   }
 
   // Called just before this Command runs the first time
@@ -26,28 +23,8 @@ public class WristManualCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double wristUpTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristUpAxisNumber);
-    double wristDownTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristDownAxisNumber); 
-       
-
-    // if wristUpTrigger is pulled, move the wrist up
-      if(wristUpTrigger > RobotMap.joystickIsActive){
-        Robot.m_wrist.setSpeed(RobotMap.wristUpSpeed); 
-      }
-      // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
-     else { 
-        if(wristDownTrigger > RobotMap.joystickIsActive){
-          Robot.m_wrist.setSpeed(RobotMap.wristDownSpeed); 
-        }
-        // if neither trigger is pulled, set wrist speed to stop
-        else {
-          //Robot.m_wrist.setSpeed(RobotMap.wristHoldSpeed);
-          wrist.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
-        }
-     }
-    }  
-
-  
+    int elevatorEncoderCounts = m_elevator_talon.getSensorCollection().getQuadraturePosition();
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -66,4 +43,3 @@ public class WristManualCommand extends Command {
   protected void interrupted() {
   }
 }
-

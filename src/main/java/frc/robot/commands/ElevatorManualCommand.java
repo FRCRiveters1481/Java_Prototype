@@ -49,6 +49,7 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
   protected void execute() {
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
    String myDebugString =  new String();
+   
    //Robot.m_oi.operatorController.getRawAxis(4)
     switch (POVJoystick) {
       case 180:

@@ -17,10 +17,11 @@ public class OI {
 
   public Joystick driverController = new Joystick(RobotMap.driverController);
   public Joystick operatorController = new Joystick(RobotMap.operatorController);
-
- 
-  // Button buttonIn = new JoystickButton(driverController, RobotMap.intakeInAxisNumber);
-  // Button buttonOut = new JoystickButton(driverController, RobotMap.intakeOutAxisNumber);
+  
+  Button ButtonElevatorJogUp = new JoystickButton(operatorController, RobotMap.ElevatorJogUpButton);
+  ButtonElevatorJogUp.whileHeld(new ElevatorJogUpCommand);
+  Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.ElevatorJogDownButton);
+  ButtonElevatorJogDown.whileHeld(new ElevatorJogDownCommand);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
