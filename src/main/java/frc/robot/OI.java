@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.*;
+import frc.robot.commands.ElevatorJogDownCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -18,9 +20,10 @@ public class OI {
   public Joystick driverController = new Joystick(RobotMap.driverController);
   public Joystick operatorController = new Joystick(RobotMap.operatorController);
   
-  Button ButtonElevatorJogUp = new JoystickButton(operatorController, RobotMap.ElevatorJogUpButton);
+  public Button ButtonElevatorJogUp = new JoystickButton(operatorController, RobotMap.ElevatorJogUpButton);
   ButtonElevatorJogUp.whileHeld(new ElevatorJogUpCommand);
-  Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.ElevatorJogDownButton);
+
+  pulblic Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.ElevatorJogDownButton);
   ButtonElevatorJogDown.whileHeld(new ElevatorJogDownCommand);
 
   //// CREATING BUTTONS

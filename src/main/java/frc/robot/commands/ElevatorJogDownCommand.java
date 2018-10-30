@@ -8,11 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.ElevatorManualCommand;
+import frc.robot.Robot;
 
-public class ElevatorJogDown extends Command {
-  public ElevatorJogDown() {
+public class ElevatorJogDownCommand extends Command {
+  public ElevatorJogDownCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +26,7 @@ public class ElevatorJogDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // Make sure we are not too low before we jog down
     int elevatorEncoderCounts = m_elevator_talon.getSensorCollection().getQuadraturePosition();
   }
 

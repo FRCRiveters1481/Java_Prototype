@@ -42,7 +42,7 @@ public class WristManualCommand extends Command {
         // if neither trigger is pulled, set wrist speed to stop
         else {
           //Robot.m_wrist.setSpeed(RobotMap.wristHoldSpeed);
-          wrist.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
+          wrist.m_wristMotor.set(ControlMode.Position, RobotMap.floorHeight);
         }
      }
     }  
