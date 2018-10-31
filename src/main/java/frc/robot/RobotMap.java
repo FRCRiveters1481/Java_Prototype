@@ -43,7 +43,7 @@ public class RobotMap {
 public static double elevatorGearDiameter= 2.1;//this is not the real number this is a non magical number.  
 public final static int hold = -1;
 public final static int floorHeight = 0;
-public final static int jogLowerLimit = 100;
+public final static int jogLowerLimit = 0;
 public final static int  switchHeight = 5168;
 public final static int  lowScaleHeight = 14116;
 public final static int highScaleHeight = 21044;
@@ -52,7 +52,7 @@ public static int elevatorCommandedPosition = hold;
 public static int ElevatorLimitSwitchInput = 2;
 public static int ElevatorJogUpButton = 5;
 public static int ElevatorJogDownButton = 6;
-public static int ElevatorRate = 58; //encoder counts per 20 mil secs
+public static int ElevatorRate = 200; //encoder counts per 20 mil secs
 
 
 public static int driverController = 0; // driver joystick

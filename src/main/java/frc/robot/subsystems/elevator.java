@@ -27,36 +27,12 @@ public enum  ElevatorDirection {
 };
 
 private static DigitalInput m_limitSwitchElevator = new DigitalInput(RobotMap.ElevatorLimitSwitchInput);
+int m_lastTargetPosition;
+public elevator () {
 
+  m_lastTargetPosition = getActualPosition();
+}
 public void periodic() {
- /* switch (RobotMap.elevatorCommandedPosition) {
-    case RobotMap.hold:
-        // This is the same action as the default
-      break;
-
-    case RobotMap.floorHeight: 
-      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.floorHeight);
-     // elevator.m_elevator_talon.set(ControlMode.PercentOutput, .5 );
-      System.out.print(String.format ("%d Elevator 21 \n" , (int) RobotMap.elevatorCommandedPosition));   
-      break;
-
-    case RobotMap.switchHeight:
-      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.switchHeight);
-      break;
-
-    case RobotMap.lowScaleHeight:
-    elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.lowScaleHeight);
-      break;
-
-    case RobotMap.highScaleHeight:
-      elevator.m_elevator_talon.set(ControlMode.Position, RobotMap.highScaleHeight);
-      break;
-  
-    default:
-    // Need the default action to be hold the current position
-      break;
-  }
-*/
 
   m_elevator_talon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
   m_elevator_talon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
@@ -67,8 +43,9 @@ public void periodic() {
     m_elevator_talon.getSensorCollection().setQuadraturePosition(0,0);
   }
   SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
-  SmartDashboard.putNumber("ElevatorEncoderCounts",  m_elevator_talon.getSensorCollection().getQuadraturePosition());
+  SmartDashboard.putNumber("ElevatorEncoderCounts",  getActualPosition());
  
+  SmartDashboard.putNumber("bullseyeElevatorPosition",  m_lastTargetPosition);
 }
 
   @Override
@@ -94,7 +71,7 @@ public void periodic() {
     m_elevator_talon.configPeakOutputReverse(-1, 30); 
     m_elevator_talon.setSensorPhase(false);
     m_elevator_talon.config_kF(0, 0.0, 30); 
-    m_elevator_talon.config_kP(0, 0.1, 30); 
+    m_elevator_talon.config_kP(0, 3.0, 30); 
     m_elevator_talon.config_kI(0, 0.0, 30); 
     m_elevator_talon.config_kD(0, 0.0, 30); 
 
@@ -103,20 +80,36 @@ public void periodic() {
     SmartDashboard.putNumber("MotorKI", 0.0);
     SmartDashboard.putNumber("MotorKD", 0.0);
 
-    SmartDashboard.putNumber("ElevatorEncoderCounts", 0);
+    SmartDashboard.putNumber("ElevatorEncoderCounts", getActualPosition());
 
     SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
     
   }
-  public void elevatorJog(ElevatorDirection Direction ) {
-    //getQuadraturePosition();
 
-
-  }
   public void setTargetPosition(int TargetPosition) {
-  if ((TargetPosition > RobotMap.jogLowerLimit) & (TargetPosition < RobotMap.jogUpperLimit)){
+
+  if (TargetPosition < RobotMap.jogLowerLimit)  {
+    TargetPosition = RobotMap.jogLowerLimit;
+  }
+  if (TargetPosition > RobotMap.jogUpperLimit){
+    TargetPosition = RobotMap.jogUpperLimit;
+  }
     m_elevator_talon.set(ControlMode.Position, TargetPosition);
+    m_lastTargetPosition = TargetPosition;
   }
-  SmartDashboard.putNumber("bullseyePosition",  TargetPosition);
-  }
+
+
+  
+
+  public int getTargetPosition() {
+
+  return m_lastTargetPosition;
+   
+    }
+
+    public int getActualPosition() {
+
+      return m_elevator_talon.getSensorCollection().getQuadraturePosition();
+       
+        }
 }

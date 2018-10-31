@@ -31,9 +31,7 @@ public class ElevatorManualCommand extends Command {
 
 public ElevatorManualCommand(elevatorPosition commandedPosition){
  requires(Robot.m_elevator);
-  
-
-    
+      
 }
 
 
@@ -47,23 +45,22 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
-   String myDebugString =  new String();
-   
-   //Robot.m_oi.operatorController.getRawAxis(4)
+ 
     switch (POVJoystick) {
       case 180:
-      RobotMap.elevatorCommandedPosition = RobotMap.floorHeight;
+      Robot.m_elevator.setTargetPosition(RobotMap.floorHeight) ;
       break;
-
       case 135:
-      RobotMap.elevatorCommandedPosition = RobotMap.switchHeight;
+      Robot.m_elevator.setTargetPosition(RobotMap.switchHeight);
       break;
       case 0:
-      RobotMap.elevatorCommandedPosition = RobotMap.highScaleHeight;
+      Robot.m_elevator.setTargetPosition( RobotMap.highScaleHeight);
       break;
       default:
-      RobotMap.elevatorCommandedPosition = RobotMap.hold;
+   
       break;
     }
 

@@ -16,12 +16,12 @@ import com.ctre.phoenix.motorcontrol.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevatorJogUpCommand extends Command {
-  int elevatorEncoderCounts;
+;
   public ElevatorJogUpCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_elevator);
-    elevatorEncoderCounts = Robot.m_elevator.m_elevator_talon.getSensorCollection().getQuadraturePosition();
+ 
   }
 
   // Called just before this Command runs the first time
@@ -32,12 +32,8 @@ public class ElevatorJogUpCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      // Make sure we are not too high before we jog up
-      if (elevatorEncoderCounts < RobotMap.jogUpperLimit){
-        Robot.m_elevator.m_elevator_talon.set(ControlMode.Position, elevatorEncoderCounts + RobotMap.ElevatorRate);
-        elevatorEncoderCounts = elevatorEncoderCounts + RobotMap.ElevatorRate;
-      }
-    SmartDashboard.putNumber("ElevatorJogUpEncoderCounts", elevatorEncoderCounts);
+   Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() + RobotMap.ElevatorRate) ;
+
     }
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -54,6 +50,7 @@ public class ElevatorJogUpCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition());
   }
 
 }

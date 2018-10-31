@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class ElevatorJogDownCommand extends Command {
-  int elevatorEncoderCounts;
+
   public ElevatorJogDownCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_elevator);
-    elevatorEncoderCounts = Robot.m_elevator.m_elevator_talon.getSensorCollection().getQuadraturePosition();
+
   }
 
   // Called just before this Command runs the first time
@@ -33,8 +33,8 @@ public class ElevatorJogDownCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // Make sure we are not too low before we jog down
-  
+
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() - RobotMap.ElevatorRate) ;
    
   }
 
@@ -53,5 +53,6 @@ public class ElevatorJogDownCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition());
   }
 }
