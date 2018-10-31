@@ -39,9 +39,8 @@ public class WristManualCommand extends Command {
         if(wristDownTrigger > RobotMap.joystickIsActive){
           Robot.m_wrist.setSpeed(RobotMap.wristDownSpeed); 
         }
-        // if neither trigger is pulled, set wrist speed to stop
         else {
-          //Robot.m_wrist.setSpeed(RobotMap.wristHoldSpeed);
+        // if neither trigger is pulled, set wrist speed to stop
           Robot.m_wrist.m_wristMotor.set(ControlMode.Position, RobotMap.floorHeight);
         }
      }
