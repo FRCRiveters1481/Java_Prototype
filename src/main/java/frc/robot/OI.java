@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import frc.robot.commands.ElevatorJogDownCommand;
-
+import frc.robot.commands.ElevatorJogUpCommand;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -20,12 +20,9 @@ public class OI {
   public Joystick driverController = new Joystick(RobotMap.driverController);
   public Joystick operatorController = new Joystick(RobotMap.operatorController);
   
-  public Button ButtonElevatorJogUp = new JoystickButton(operatorController, RobotMap.ElevatorJogUpButton);
-  ButtonElevatorJogUp.whileHeld(new ElevatorJogUpCommand);
+  private Button ButtonElevatorJogUp = new JoystickButton(operatorController, RobotMap.ElevatorJogUpButton);
 
-  pulblic Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.ElevatorJogDownButton);
-  ButtonElevatorJogDown.whileHeld(new ElevatorJogDownCommand);
-
+  private Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.ElevatorJogDownButton);
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -55,6 +52,8 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
   public OI() {
   //  buttonIn.whileHeld(new IntakeCommand(IntakeCommand.intakeDirection.In));
-
+  ButtonElevatorJogUp.whileHeld(new ElevatorJogUpCommand());
+  ButtonElevatorJogDown.whileHeld (new ElevatorJogDownCommand());
   }
 }
+

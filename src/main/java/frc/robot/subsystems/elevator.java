@@ -29,7 +29,7 @@ public enum  ElevatorDirection {
 private static DigitalInput m_limitSwitchElevator = new DigitalInput(RobotMap.ElevatorLimitSwitchInput);
 
 public void periodic() {
-  switch (RobotMap.elevatorCommandedPosition) {
+ /* switch (RobotMap.elevatorCommandedPosition) {
     case RobotMap.hold:
         // This is the same action as the default
       break;
@@ -56,7 +56,7 @@ public void periodic() {
     // Need the default action to be hold the current position
       break;
   }
-
+*/
 
   m_elevator_talon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
   m_elevator_talon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
@@ -112,5 +112,11 @@ public void periodic() {
     //getQuadraturePosition();
 
 
+  }
+  public void setTargetPosition(int TargetPosition) {
+  if ((TargetPosition > RobotMap.jogLowerLimit) & (TargetPosition < RobotMap.jogUpperLimit)){
+    m_elevator_talon.set(ControlMode.Position, TargetPosition);
+  }
+  SmartDashboard.putNumber("bullseyePosition",  TargetPosition);
   }
 }

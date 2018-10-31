@@ -14,7 +14,7 @@ import frc.robot.commands.WristManualCommand;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class wrist extends Subsystem {
-private static WPI_TalonSRX m_wristMotor = new WPI_TalonSRX (RobotMap.wristMotor);
+public static WPI_TalonSRX m_wristMotor = new WPI_TalonSRX (RobotMap.wristMotor);
 
 
 

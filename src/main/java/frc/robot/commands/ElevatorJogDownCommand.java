@@ -10,12 +10,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.ElevatorManualCommand;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.elevator;
+import com.ctre.phoenix.motorcontrol.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 public class ElevatorJogDownCommand extends Command {
+  int elevatorEncoderCounts;
   public ElevatorJogDownCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_elevator);
+    elevatorEncoderCounts = Robot.m_elevator.m_elevator_talon.getSensorCollection().getQuadraturePosition();
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +34,8 @@ public class ElevatorJogDownCommand extends Command {
   @Override
   protected void execute() {
     // Make sure we are not too low before we jog down
-    int elevatorEncoderCounts = m_elevator_talon.getSensorCollection().getQuadraturePosition();
+  
+   
   }
 
   // Make this return true when this Command no longer needs to run execute()

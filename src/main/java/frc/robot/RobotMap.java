@@ -50,8 +50,9 @@ public final static int highScaleHeight = 21044;
 public final static int jogUpperLimit = 21500; 
 public static int elevatorCommandedPosition = hold;
 public static int ElevatorLimitSwitchInput = 2;
-public static int ElevatorJogUpButton = 4;
-public static int ElevatorJogDownButton = 5;
+public static int ElevatorJogUpButton = 5;
+public static int ElevatorJogDownButton = 6;
+public static int ElevatorRate = 58; //encoder counts per 20 mil secs
 
 
 public static int driverController = 0; // driver joystick

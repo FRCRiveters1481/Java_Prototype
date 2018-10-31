@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-
+import com.ctre.phoenix.motorcontrol.*;
 public class WristManualCommand extends Command {
   public WristManualCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -42,7 +42,7 @@ public class WristManualCommand extends Command {
         // if neither trigger is pulled, set wrist speed to stop
         else {
           //Robot.m_wrist.setSpeed(RobotMap.wristHoldSpeed);
-          wrist.m_wristMotor.set(ControlMode.Position, RobotMap.floorHeight);
+          Robot.m_wrist.m_wristMotor.set(ControlMode.Position, RobotMap.floorHeight);
         }
      }
     }  
