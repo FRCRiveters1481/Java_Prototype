@@ -8,4 +8,5 @@ Plans for 1 Nov 2018 and beyond . . .
 3. Add check to limit drive speed when elevator is up 
 4. Code Auton
 5. Code Climb
+6. Order more joysticks
 
