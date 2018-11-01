@@ -27,7 +27,7 @@ public enum  ElevatorDirection {
   Up, Down, Hold
 };
 
-private static DigitalInput m_limitSwitchElevator = new DigitalInput(RobotMap.ElevatorLimitSwitchInput);
+private static DigitalInput m_limitSwitchElevator = new DigitalInput(RobotMap.elevatorLimitSwitchInput);
 int m_lastTargetPosition;
 public elevator () {
 
@@ -97,11 +97,11 @@ public void periodic() {
 
   public void setTargetPosition(int TargetPosition) {
 
-  if (TargetPosition < RobotMap.jogLowerLimit)  {
-    TargetPosition = RobotMap.jogLowerLimit;
+  if (TargetPosition < RobotMap.elevatorJogLowerLimit)  {
+    TargetPosition = RobotMap.elevatorJogLowerLimit;
   }
-  if (TargetPosition > RobotMap.jogUpperLimit){
-    TargetPosition = RobotMap.jogUpperLimit;
+  if (TargetPosition > RobotMap.elevatorJogUpperLimit){
+    TargetPosition = RobotMap.elevatorJogUpperLimit;
   }
     m_elevator_talon.set(ControlMode.Position, TargetPosition);
     m_lastTargetPosition = TargetPosition;

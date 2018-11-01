@@ -11,12 +11,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class WristUpCommand extends Command {
   public WristUpCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_wrist);
+
+    SmartDashboard.putNumber("JogUpDistanceOvertravelOffset",4.0);
   }
 
   // Called just before this Command runs the first time
@@ -27,6 +30,7 @@ public class WristUpCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getTargetPosition() + RobotMap.wristRate) ;
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,5 +48,9 @@ public class WristUpCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    RobotMap myMap = new RobotMap();
+
+    int wristOvershoot = myMap.convertRelativeInchesToElevatorTicks(SmartDashboard.getNumber("JogUpDistanceOvertravelOffset",0.0));
+    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + wristOvershoot);
   }
 }

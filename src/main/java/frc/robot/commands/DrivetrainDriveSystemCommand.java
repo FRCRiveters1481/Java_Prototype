@@ -27,10 +27,18 @@ public class DrivetrainDriveSystemCommand extends Command {
 
     @Override
     protected void execute() {
-        //Values used for Tank Drive
+        // Check the position of the elevator to see if we need to throttle the joystick inputs to avoid tippage
+        int elevatorPositionEncoderCounts = Robot.m_elevator.getActualPosition();
+        
+        // Read the axes of the joysticks
         double throttleJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.forwardReverseAxis);
         double steerJoystick = Robot.m_oi.driverController.getRawAxis(RobotMap.leftRightAxis);
         
+        if (elevatorPositionEncoderCounts > RobotMap.elevatorIsUpCountThreshold){
+            throttleJoystick = throttleJoystick * RobotMap.throttleFactorForElevatorUp;
+            steerJoystick = steerJoystick * RobotMap.throttleFactorForElevatorUp;
+        }
+
         Robot.m_driveSubsystem.m_drive.arcadeDrive(-steerJoystick, throttleJoystick);
         
     }

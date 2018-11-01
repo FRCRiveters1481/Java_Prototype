@@ -51,13 +51,13 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
  
     switch (POVJoystick) {
       case 180:
-      Robot.m_elevator.setTargetPosition(RobotMap.floorHeight) ;
+      Robot.m_elevator.setTargetPosition(RobotMap.elevatorFloorHeight) ;
       break;
       case 135:
-      Robot.m_elevator.setTargetPosition(RobotMap.switchHeight);
+      Robot.m_elevator.setTargetPosition(RobotMap.elevatorSwitchHeight);
       break;
       case 0:
-      Robot.m_elevator.setTargetPosition( RobotMap.highScaleHeight);
+      Robot.m_elevator.setTargetPosition( RobotMap.elevatorHighScaleHeight);
       break;
       default:
    

@@ -37,7 +37,7 @@ public class ElevatorJogDownCommand extends Command {
   @Override
   protected void execute() {
 
-    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() - RobotMap.ElevatorRate) ;
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() - RobotMap.elevatorRate) ;
    
   }
 

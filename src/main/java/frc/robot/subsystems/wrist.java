@@ -22,10 +22,29 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class wrist extends Subsystem {
 public static WPI_TalonSRX m_wristTalon = new WPI_TalonSRX (RobotMap.wristTalon);
 
+private static DigitalInput m_limitSwitchWrist = new DigitalInput(RobotMap.elevatorLimitSwitchInput);
 int m_lastTargetPosition;
 
-public void periodic() {
+public wrist(){
+  m_lastTargetPosition = getActualPosition();
+}
 
+public void periodic() {
+  m_wristTalon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
+  m_wristTalon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
+  m_wristTalon.config_kI(0,  SmartDashboard.getNumber("MotorKI", 0.0), 30); 
+  m_wristTalon.config_kD(0,  SmartDashboard.getNumber("MotorKD", 0.0), 30); 
+  m_wristTalon.configClosedloopRamp(SmartDashboard.getNumber("WristRampRate",0.1),0);
+
+  
+
+  if (m_limitSwitchWrist.get() == false) {
+    m_wristTalon.getSensorCollection().setQuadraturePosition(0,0);
+  }
+  SmartDashboard.putBoolean("WristLimitSwitch", m_limitSwitchWrist.get());
+  SmartDashboard.putNumber("WristEncoderCounts",  getActualPosition());
+ 
+  SmartDashboard.putNumber("bullseyeWristPosition",  m_lastTargetPosition);
 
 
 }
@@ -44,7 +63,29 @@ public void periodic() {
     
     m_wristTalon.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, RobotMap.kTimeoutMs);				// Feedback Device of Remote Talon
 
+    m_wristTalon.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kTimeoutMs);	// Quadrature Encoder of current Talon		
+    m_wristTalon.configNominalOutputForward(0, 30); 
+    m_wristTalon.configNominalOutputReverse(0, 30); 
+    m_wristTalon.configPeakOutputForward(1, 30); 
+    m_wristTalon.configPeakOutputReverse(-1, 30); 
+    m_wristTalon.setSensorPhase(false);
+    m_wristTalon.config_kF(0, 0.0, 30); 
+    m_wristTalon.config_kP(0, 1.0, 30); 
+    m_wristTalon.config_kI(0, 0.0, 30); 
+    m_wristTalon.config_kD(0, 0.0, 30); 
 
+    SmartDashboard.putNumber("MotorKF", 0.0); 
+    SmartDashboard.putNumber("MotorKp", 1.0);
+    SmartDashboard.putNumber("MotorKI", 0.0);
+    SmartDashboard.putNumber("MotorKD", 0.0);
+
+    SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
+
+    SmartDashboard.putBoolean("WristLimitSwitch", m_limitSwitchWrist.get());
+    SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
+
+    SmartDashboard.putNumber("WristRampRate",0.1);
+  
   }
 // set the speed of the wrist motor 
   public void setSpeed(double speed){
@@ -53,11 +94,11 @@ public void periodic() {
 
   public void setTargetPosition(int TargetPosition) {
 
-    if (TargetPosition < RobotMap.jogLowerLimit)  {
-      TargetPosition = RobotMap.jogLowerLimit;
+    if (TargetPosition < RobotMap.wristJogLowerLimit)  {
+      TargetPosition = RobotMap.wristJogLowerLimit;
     }
-    if (TargetPosition > RobotMap.jogUpperLimit){
-      TargetPosition = RobotMap.jogUpperLimit;
+    if (TargetPosition > RobotMap.wristJogUpperLimit){
+      TargetPosition = RobotMap.wristJogUpperLimit;
     }
     m_wristTalon.set(ControlMode.Position, TargetPosition);
       m_lastTargetPosition = TargetPosition;

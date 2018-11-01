@@ -34,7 +34,7 @@ public class ElevatorJogUpCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() + RobotMap.ElevatorRate) ;
+   Robot.m_elevator.setTargetPosition(Robot.m_elevator.getTargetPosition() + RobotMap.elevatorRate) ;
 
     }
   // Make this return true when this Command no longer needs to run execute()

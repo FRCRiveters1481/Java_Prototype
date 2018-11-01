@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.wrist;
 import com.ctre.phoenix.motorcontrol.*;
 public class WristManualCommand extends Command {
   public WristManualCommand() {
@@ -30,18 +31,15 @@ public class WristManualCommand extends Command {
     double wristDownTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristDownAxisNumber); 
        
 
-    // if wristUpTrigger is pulled, move the wrist up
+    // if wristUpTrigger is pulled, move the wrist up toward 90 degrees
       if(wristUpTrigger > RobotMap.joystickIsActive){
-        // Robot.m_wrist.setSpeed(RobotMap.wristUpSpeed); 
+        Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts); 
       }
       // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
      else { 
+       // if wristDownTrigger is pulled, move the wrist down toward 0 degrees
         if(wristDownTrigger > RobotMap.joystickIsActive){
-          // Robot.m_wrist.setSpeed(RobotMap.wristDownSpeed); 
-        }
-        else {
-        // if neither trigger is pulled, set wrist speed to stop
-          Robot.m_wrist.m_wristTalon.set(ControlMode.Position, RobotMap.floorHeight);
+          Robot.m_wrist.setTargetPosition(RobotMap.wristZeroPositionCounts); 
         }
      }
     }  

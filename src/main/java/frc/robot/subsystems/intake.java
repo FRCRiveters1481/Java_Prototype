@@ -15,8 +15,8 @@ import frc.robot.commands.IntakeCommand;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class intake extends Subsystem {
-private static WPI_TalonSRX m_intake_talon_1 = new WPI_TalonSRX (RobotMap.intake_talon_1);
-private static WPI_TalonSRX m_intake_talon_2 = new WPI_TalonSRX (RobotMap.intake_talon_2);
+private static WPI_TalonSRX m_intake_talon_1 = new WPI_TalonSRX (RobotMap.intakeTalon1);
+private static WPI_TalonSRX m_intake_talon_2 = new WPI_TalonSRX (RobotMap.intakeTalon2);
 
 
 
