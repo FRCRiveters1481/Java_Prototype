@@ -1,12 +1,11 @@
  # Java_Prototype
 Our code for the off season. 
 
-Plans for 17 Oct 2018 and beyond . . .
+Plans for 1 Nov 2018 and beyond . . .
 
-1. Define data flow and control flow for each subsystem
-2. Define other details for each subsystem
-3. Code Elevator
-4. Code Wrist
+1. Code Wrist
+2. Tune Wrist
+3. Add check to limit drive speed when elevator is up 
+4. Code Auton
 5. Code Climb
-6. Code Auton
 
