@@ -53,7 +53,10 @@ public static int ElevatorLimitSwitchInput = 2;
 public static int ElevatorJogUpButton = 5;
 public static int ElevatorJogDownButton = 6;
 public static int ElevatorRate = 200; //encoder counts per 20 mil secs
-
+public static double JogUpdateDistanceOvertravelOffset = 4.0; /* inches */
+public static double JogDownDistanceOvertravelOffset = 4.5; /* inches */
+public static double ElevatorTicksPerInch = 288.669f; /*  ticks */
+private static int ElevatorTicksAtBottomFromFloor = 2915; /* ticks */
 
 public static int driverController = 0; // driver joystick
   public static int operatorController = 1; // operator joystick
@@ -82,5 +85,22 @@ public static int driverController = 0; // driver joystick
   public static double wristUpSpeed = 0.75;
   public static double wristHoldSpeed = 0.4;
   public static int wristMotorStop = 0; 
+
+  public int convertRelativeInchesToElevatorTicks(double inches) {
+    return (int)(inches * ElevatorTicksPerInch);
+  }
+
+  public int convertAbsoluteInchesToElevatorTicks(double inches) {
+    return (int)(inches * ElevatorTicksPerInch) + ElevatorTicksAtBottomFromFloor;
+
+    /* y = m(x) + b
+
+    where:
+    y is the number of ticks to send to the talon set() function
+    m is the number of ticks per inch of elevator travel
+    b is the number of ticks that represent the height of the lowest point the elevator can travel
+     (the "0" tick) and the floor.
+     */
+  }
 
 }

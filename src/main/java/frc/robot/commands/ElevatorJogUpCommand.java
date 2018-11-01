@@ -21,6 +21,8 @@ public class ElevatorJogUpCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_elevator);
+
+    SmartDashboard.putNumber("JogUpDistanceOvertravelOffset",4.0);
  
   }
 
@@ -50,7 +52,10 @@ public class ElevatorJogUpCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition());
+    RobotMap myMap = new RobotMap();
+
+    int elevatorOvershoot = myMap.convertRelativeInchesToElevatorTicks(SmartDashboard.getNumber("JogUpDistanceOvertravelOffset",0.0));
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition()+elevatorOvershoot);
   }
 
 }

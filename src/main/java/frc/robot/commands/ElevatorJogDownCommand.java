@@ -23,11 +23,14 @@ public class ElevatorJogDownCommand extends Command {
     // eg. requires(chassis);
     requires(Robot.m_elevator);
 
+    SmartDashboard.putNumber("JogDownDistanceOvertravelOffset",4.5);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -53,6 +56,9 @@ public class ElevatorJogDownCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition());
+    RobotMap myMap = new RobotMap();
+
+    int elevatorOvershoot = myMap.convertRelativeInchesToElevatorTicks(SmartDashboard.getNumber("JogDownDistanceOvertravelOffset",0.0));
+    Robot.m_elevator.setTargetPosition(Robot.m_elevator.getActualPosition()-elevatorOvershoot);
   }
 }
