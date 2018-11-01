@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.*;
-public class WristManualCommand extends Command {
-  public WristManualCommand() {
+
+public class WristUpCommand extends Command {
+  public WristUpCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_wrist);
@@ -26,27 +27,7 @@ public class WristManualCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double wristUpTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristUpAxisNumber);
-    double wristDownTrigger = Robot.m_oi.operatorController.getRawAxis(RobotMap.wristDownAxisNumber); 
-       
-
-    // if wristUpTrigger is pulled, move the wrist up
-      if(wristUpTrigger > RobotMap.joystickIsActive){
-        // Robot.m_wrist.setSpeed(RobotMap.wristUpSpeed); 
-      }
-      // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
-     else { 
-        if(wristDownTrigger > RobotMap.joystickIsActive){
-          // Robot.m_wrist.setSpeed(RobotMap.wristDownSpeed); 
-        }
-        else {
-        // if neither trigger is pulled, set wrist speed to stop
-          Robot.m_wrist.m_wristTalon.set(ControlMode.Position, RobotMap.floorHeight);
-        }
-     }
-    }  
-
-  
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -65,4 +46,3 @@ public class WristManualCommand extends Command {
   protected void interrupted() {
   }
 }
-
