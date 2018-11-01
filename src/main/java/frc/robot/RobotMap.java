@@ -77,7 +77,7 @@ public static int driverController = 0; // driver joystick
   public static int intakeInAxisNumber = 3;
   public static int intakeOutAxisNumber = 2;
   
-  public static int wristMotor = 8;
+  public static int wristTalon = 8;
   public static int wristUpAxisNumber = 2;
   public static int wristDownAxisNumber = 3;
 
@@ -103,4 +103,9 @@ public static int driverController = 0; // driver joystick
      */
   }
 
+  public static int wristMotorStop = 0;
+  public static int WristRate = 100; //encoder counts per 20 mil secs 
+  public static int ButtonWristFortyFiveButton = 2; // Takes wrist to 45 degree angle position
+  public static int wristJogLowerLimit = 100; // Don't go below this encoder count on the way down
+  public static int wristJogUpperLimit = 500; // Don't go above this encoder count on the way up
 }
