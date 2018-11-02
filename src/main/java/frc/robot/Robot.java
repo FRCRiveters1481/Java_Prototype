@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   public static elevator m_elevator = new elevator();
   public static intake m_intake = new intake(); 
   public static wrist m_wrist = new wrist();
-  
+  public static climb m_climb = new climb();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

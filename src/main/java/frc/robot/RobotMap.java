@@ -115,6 +115,8 @@ public class RobotMap {
      */
   }
 
+  public static int climb_talon = 9; /* CAN ID of the climb_talon */
+public static int ClimbEnableButton = 8;
   
 
 }

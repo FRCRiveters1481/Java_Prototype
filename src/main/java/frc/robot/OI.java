@@ -26,7 +26,8 @@ public class OI {
   private Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.elevatorJogDownButton);
   
   private Button ButtonWristFortyFive = new JoystickButton(operatorController, RobotMap.buttonWristFortyFiveButton);
-
+  
+  private Button ButtonClimbEnable = new JoystickButton(operatorController,RobotMap.ClimbEnableButton);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -61,6 +62,21 @@ public class OI {
   ButtonElevatorJogDown.whileHeld (new ElevatorJogDownCommand());
 
   ButtonWristFortyFive.whileHeld(new WristFortyFiveCommand());
+  }
+
+
+  public double getClimbVelocity() {
+    double retValue;
+
+    /* If the climb's joystick is pressed down (like a button) the climb
+    is enabled, and moving the joystick up and down changes the returned value.
+    If the button isn't pressed the climb speed is 0.0, for safety. */
+    if (ButtonClimbEnable.get()) {
+      retValue = operatorController.getRawAxis(1);
+    } else {
+      retValue = 0.0;
+    }
+  return retValue;
   }
 }
 
