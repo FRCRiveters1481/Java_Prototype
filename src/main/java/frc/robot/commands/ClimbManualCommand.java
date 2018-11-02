@@ -15,7 +15,7 @@ import frc.robot.OI;
 
 public class ClimbManualCommand extends Command {
   public ClimbManualCommand() {
-    // Use requires() here to declare subsystem dependencies
+
     requires(Robot.m_climb);
   }
 
