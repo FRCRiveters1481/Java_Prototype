@@ -33,13 +33,13 @@ public class WristManualCommand extends Command {
 
     // if wristUpTrigger is pulled, move the wrist up toward 90 degrees
       if(wristUpTrigger > RobotMap.joystickIsActive){
-        Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts); 
+        Robot.m_wrist.setTargetPosition(Robot.m_wrist.getTargetPosition() + RobotMap.wristRate) ; 
       }
       // if wristUpTrigger is not pulled, check if the wristDownTrigger is pulled
      else { 
        // if wristDownTrigger is pulled, move the wrist down toward 0 degrees
         if(wristDownTrigger > RobotMap.joystickIsActive){
-          Robot.m_wrist.setTargetPosition(RobotMap.wristZeroPositionCounts); 
+          Robot.m_wrist.setTargetPosition(Robot.m_wrist.getTargetPosition() - RobotMap.wristRate) ;
         }
      }
     }  

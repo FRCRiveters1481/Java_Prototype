@@ -88,14 +88,14 @@ public class RobotMap {
   //public static double wristHoldSpeed = 0.4;
   //public static int wristMotorStop = 0; 
 
-  public static int wristRate = 100; //encoder counts per 20 mil secs 
+  public static int wristRate = 2000; //encoder counts per 20 mil secs 
   public static int buttonWristFortyFiveButton = 2; // Takes wrist to 45 degree angle position
   public static int wristJogLowerLimit = 100; // Don't go below this encoder count on the way down
-  public static int wristJogUpperLimit = 500; // Don't go above this encoder count on the way up
-  public static int wristLimitSwitchInput = 2; // What is this when it is on the Talon?
+  public static int wristJogUpperLimit = 890000; // Don't go above this encoder count on the way up
+  //public static int wristLimitSwitchInput = 2; // What is this when it is on the Talon?
   public static int wristZeroPositionCounts = 0; // Encoder coutns for wrist level with the floor
-  public static int wristFortyFivePositionCounts = 300; // Encoder counts for wrist 45 degrees to the floor
-  public static int wristNinetyPositionCounts = 600; // Encoder counts for wrist 90 degrees to the floor
+  public static int wristFortyFivePositionCounts = 49000; // Encoder counts for wrist 45 degrees to the floor
+  public static int wristNinetyPositionCounts = 90000; // Encoder counts for wrist 90 degrees to the floor
 
 
   public int convertRelativeInchesToElevatorTicks(double inches) {

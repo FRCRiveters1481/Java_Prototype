@@ -19,7 +19,7 @@ public class WristUpCommand extends Command {
     // eg. requires(chassis);
     requires(Robot.m_wrist);
 
-    SmartDashboard.putNumber("JogUpDistanceOvertravelOffset",4.0);
+    SmartDashboard.putNumber("WristJogUpDistanceOvertravelOffset",4.0);
   }
 
   // Called just before this Command runs the first time
@@ -50,7 +50,7 @@ public class WristUpCommand extends Command {
   protected void interrupted() {
     RobotMap myMap = new RobotMap();
 
-    int wristOvershoot = myMap.convertRelativeInchesToElevatorTicks(SmartDashboard.getNumber("JogUpDistanceOvertravelOffset",0.0));
+    int wristOvershoot = myMap.convertRelativeInchesToElevatorTicks(SmartDashboard.getNumber("WristJogUpDistanceOvertravelOffset",0.0));
     Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + wristOvershoot);
   }
 }
