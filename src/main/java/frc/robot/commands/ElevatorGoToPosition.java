@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -13,6 +15,17 @@ public class ElevatorGoToPosition extends Command {
   public ElevatorGoToPosition() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+  }
+  public enum ElevatorPosition { switchHeight};
+
+  private ElevatorPosition m_position;
+
+  public ElevatorGoToPosition(ElevatorPosition position) {
+    // Use requires() here to declare subsystem dependencies
+    requires(Robot.m_elevator);
+
+    m_position = position;
+
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +36,14 @@ public class ElevatorGoToPosition extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    
+    switch (m_position) {
+      case switchHeight:
+      Robot.m_elevator.setTargetPosition(RobotMap.elevatorSwitchHeight);
+      break;
+      
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
