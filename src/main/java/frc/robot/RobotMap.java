@@ -78,11 +78,16 @@ public class RobotMap {
   //public final static double intakeOutSpeed = -0.5; // controls speed of motors for shooting out a cube
   public final static double intakeHoldSpeed = 0.2; // controls speed of motors to hold cube
   public final static double joystickIsActive = 0.1; 
-  //public final static int intakeStop = 0; 
+
+  /* This is the speed of the intake during  the intakehold delay */
+  public final static double intakePostEjectSpeed = 0.0; 
+  public final static long intakeHoldDelay = 3000; /* IntakeHold speed delay in milliseconds */
 
   public final static int intakeInAxisNumber = 3;
   public final static int intakeOutAxisNumber = 2;
   
+
+
   public final static int wristTalon = 8;
   public final static int wristUpAxisNumber = 2;
   public final static int wristDownAxisNumber = 3;

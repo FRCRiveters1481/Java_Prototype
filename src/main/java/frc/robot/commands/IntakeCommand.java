@@ -17,6 +17,8 @@ import frc.robot.RobotMap;
 
 public class IntakeCommand extends Command {
     
+  private long m_lastEjectAttemptTimestamp;
+
 
   public IntakeCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -41,11 +43,30 @@ public class IntakeCommand extends Command {
      
       if (intakeOutTrigger > RobotMap.joystickIsActive){
         Robot.m_intake.setSpeed(-intakeOutTrigger);
+        /* Get a timestamp of the current time of operation, in milliseconds to use later
+        to determine how long ago we pressed (then released) the Intake eject button */
+        m_lastEjectAttemptTimestamp = System.currentTimeMillis();
       }
       if ((intakeOutTrigger > RobotMap.joystickIsActive) | (intakeInTrigger > RobotMap.joystickIsActive)){ 
       }
       else {
-        Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+        /* The operator has released both buttons.
+           Delay a little while before enabling the intake holding (intakeHoldSpeed) 
+           to allow the robot to back away from a placed cube to keep the cube from
+           being sucked up again into the intake.
+           */
+        if ( (System.currentTimeMillis() - m_lastEjectAttemptTimestamp) > RobotMap.intakeHoldDelay) {
+          /* Enough time has elapsed since we ejected the cube
+          Enable the intake holding speed to trap future intake'd cubes */
+          Robot.m_intake.setSpeed(RobotMap.intakeHoldSpeed);
+        } else {
+
+          /* Not enough time has elapsed since the cube was ejected.
+             Keep the intake speed at a neutral value to allow the robot
+             to back away from the emplaced cube, and not inadvertantly
+             pull in a cube. */
+          Robot.m_intake.setSpeed(RobotMap.intakePostEjectSpeed);
+        }
       }
     }  
   
