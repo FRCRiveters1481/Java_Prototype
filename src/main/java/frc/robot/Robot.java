@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.commands.autonTestCommand;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -98,12 +100,19 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
 
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
+    
+      String autoSelected = SmartDashboard.getString("Auto Selector","Default"); 
+      
+      switch(autoSelected) { 
+        case "My Auto": 
+        m_autonomousCommand = new autonTestCommand(); 
+      break;
+       case "Default Auto": 
+       default:
+   
+       break;
+       }
+     
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
