@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import frc.robot.commands.ElevatorJogDownCommand;
 import frc.robot.commands.ElevatorJogUpCommand;
 import frc.robot.commands.WristFortyFiveCommand;
+import frc.robot.commands.WristGoToPositionCommand;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,7 +27,11 @@ public class OI {
   private Button ButtonElevatorJogDown = new JoystickButton(operatorController, RobotMap.elevatorJogDownButton);
   
   private Button ButtonWristFortyFive = new JoystickButton(operatorController, RobotMap.buttonWristFortyFiveButton);
+  private Button ButtonWristUp = new JoystickButton(operatorController, RobotMap.buttonWristUpButton);
+  private Button ButtonWristHorizontal = new JoystickButton(operatorController, RobotMap.buttonWristHorizontalButton);
   
+
+
   private Button ButtonClimbEnable = new JoystickButton(operatorController,RobotMap.ClimbEnableButton);
 
   //// CREATING BUTTONS
@@ -62,6 +67,10 @@ public class OI {
   ButtonElevatorJogDown.whileHeld (new ElevatorJogDownCommand());
 
   ButtonWristFortyFive.whileHeld(new WristFortyFiveCommand());
+
+  ButtonWristUp.whileHeld(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Up));
+  ButtonWristHorizontal.whileHeld(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Horizontal));
+
   }
 
 

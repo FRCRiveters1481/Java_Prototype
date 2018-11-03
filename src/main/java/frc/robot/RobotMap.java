@@ -94,6 +94,8 @@ public class RobotMap {
 
   public static int wristRate = 2000; //encoder counts per 20 mil secs 
   public static int buttonWristFortyFiveButton = 2; // Takes wrist to 45 degree angle position
+  public static int buttonWristUpButton = 3; // Takes wrist all the way up
+  public static int buttonWristHorizontalButton = 1; // Takes wrist to horizontal (cube pickup)
   public static int wristJogLowerLimit = 100; // Don't go below this encoder count on the way down
   public static int wristJogUpperLimit = 890000; // Don't go above this encoder count on the way up
   //public static int wristLimitSwitchInput = 2; // What is this when it is on the Talon?
