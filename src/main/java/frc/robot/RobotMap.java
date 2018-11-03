@@ -70,6 +70,10 @@ public class RobotMap {
   public final static int intakeTalon1 = 11;
   public final static int intakeTalon2 = 10; 
 
+  public final static int leftDriveControllerSensor = intakeTalon1;
+  public final static int rightDriveControllerSensor = intakeTalon2;
+  
+
   //public final static double intakeInSpeed = 0.5; // controls speed of motors for bringing in a cube
   //public final static double intakeOutSpeed = -0.5; // controls speed of motors for shooting out a cube
   public final static double intakeHoldSpeed = 0.2; // controls speed of motors to hold cube
@@ -117,6 +121,16 @@ public class RobotMap {
 
   public static int climb_talon = 9; /* CAN ID of the climb_talon */
 public static int ClimbEnableButton = 8;
-  
 
+
+public double convertDriveTicksPerTimeToInchesPerSecond(int ticksPerUnitTime) {
+
+  return (double) ticksPerUnitTime;
+}
+
+
+public int convertInchesToDriveTicks(double inches) {
+
+  return (int) inches;
+}
 }
