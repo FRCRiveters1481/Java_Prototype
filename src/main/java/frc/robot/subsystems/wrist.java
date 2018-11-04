@@ -29,21 +29,21 @@ public wrist(){
 }
 
 public void periodic() {
-  m_wristTalon.config_kF(0,  SmartDashboard.getNumber("WristMotorKF", 0.0), 30); 
-  m_wristTalon.config_kP(0,  SmartDashboard.getNumber("WristMotorKp", 0.0), 30); 
-  m_wristTalon.config_kI(0,  SmartDashboard.getNumber("WristMotorKI", 0.0), 30); 
-  m_wristTalon.config_kD(0,  SmartDashboard.getNumber("WristMotorKD", 0.0), 30); 
-  m_wristTalon.configClosedloopRamp(SmartDashboard.getNumber("WristRampRate",0.1),0);
+  //m_wristTalon.config_kF(0,  SmartDashboard.getNumber("WristMotorKF", 0.0), 30); 
+  //m_wristTalon.config_kP(0,  SmartDashboard.getNumber("WristMotorKp", 0.0), 30); 
+  //m_wristTalon.config_kI(0,  SmartDashboard.getNumber("WristMotorKI", 0.0), 30); 
+  //m_wristTalon.config_kD(0,  SmartDashboard.getNumber("WristMotorKD", 0.0), 30); 
+  //m_wristTalon.configClosedloopRamp(SmartDashboard.getNumber("WristRampRate",0.1),0);
 
   
   
   if (m_wristTalon.getSensorCollection().isRevLimitSwitchClosed()) {
     m_wristTalon.getSensorCollection().setQuadraturePosition(0,0);
   }
-  SmartDashboard.putBoolean("WristLimitSwitch", m_wristTalon.getSensorCollection().isRevLimitSwitchClosed());
+  //SmartDashboard.putBoolean("WristLimitSwitch", m_wristTalon.getSensorCollection().isRevLimitSwitchClosed());
   SmartDashboard.putNumber("WristEncoderCounts",  getActualPosition());
  
-  SmartDashboard.putNumber("bullseyeWristPosition",  m_lastTargetPosition);
+  //SmartDashboard.putNumber("bullseyeWristPosition",  m_lastTargetPosition);
 
 
 }
@@ -73,18 +73,18 @@ public void periodic() {
     m_wristTalon.config_kI(0, 0.0, 30); 
     m_wristTalon.config_kD(0, 0.0, 30); 
 
-    SmartDashboard.putNumber("WristMotorKF", 0.0); 
-    SmartDashboard.putNumber("WristMotorKp", 0.05);
-    SmartDashboard.putNumber("WristMotorKI", 0.0);
-    SmartDashboard.putNumber("WristMotorKD", 0.0);
+    //SmartDashboard.putNumber("WristMotorKF", 0.0); 
+    //SmartDashboard.putNumber("WristMotorKp", 0.05);
+    //SmartDashboard.putNumber("WristMotorKI", 0.0);
+    //SmartDashboard.putNumber("WristMotorKD", 0.0);
 
-    SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
+    //SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
 
 
-    SmartDashboard.putBoolean("WristLimitSwitch", m_wristTalon.getSensorCollection().isRevLimitSwitchClosed());
-    SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
+    //SmartDashboard.putBoolean("WristLimitSwitch", m_wristTalon.getSensorCollection().isRevLimitSwitchClosed());
+    //SmartDashboard.putNumber("WristEncoderCounts", getActualPosition());
 
-    SmartDashboard.putNumber("WristRampRate",0.1);
+    //SmartDashboard.putNumber("WristRampRate",0.1);
   
   }
 // set the speed of the wrist motor 

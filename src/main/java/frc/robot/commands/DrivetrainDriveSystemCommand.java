@@ -36,7 +36,7 @@ public class DrivetrainDriveSystemCommand extends Command {
         
         if (elevatorPositionEncoderCounts > RobotMap.elevatorIsUpCountThreshold){
             throttleJoystick = throttleJoystick * RobotMap.throttleFactorForElevatorUp;
-            steerJoystick = steerJoystick * RobotMap.throttleFactorForElevatorUp;
+            steerJoystick = steerJoystick * RobotMap.steerFactorForElevatorUp;
         }
 
         Robot.m_driveSubsystem.m_drive.arcadeDrive(-steerJoystick, throttleJoystick);

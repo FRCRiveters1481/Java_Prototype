@@ -35,21 +35,21 @@ public elevator () {
 }
 public void periodic() {
 
-  m_elevator_talon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
-  m_elevator_talon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
-  m_elevator_talon.config_kI(0,  SmartDashboard.getNumber("MotorKI", 0.0), 30); 
-  m_elevator_talon.config_kD(0,  SmartDashboard.getNumber("MotorKD", 0.0), 30); 
-  m_elevator_talon.configClosedloopRamp(SmartDashboard.getNumber("ElevatorRampRate",0.1),0);
+  //m_elevator_talon.config_kF(0,  SmartDashboard.getNumber("MotorKF", 0.0), 30); 
+  //m_elevator_talon.config_kP(0,  SmartDashboard.getNumber("MotorKp", 0.0), 30); 
+  //m_elevator_talon.config_kI(0,  SmartDashboard.getNumber("MotorKI", 0.0), 30); 
+  //m_elevator_talon.config_kD(0,  SmartDashboard.getNumber("MotorKD", 0.0), 30); 
+  //m_elevator_talon.configClosedloopRamp(SmartDashboard.getNumber("ElevatorRampRate",0.1),0);
 
   
 
   if (m_limitSwitchElevator.get() == false) {
     m_elevator_talon.getSensorCollection().setQuadraturePosition(0,0);
   }
-  SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
+  //SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
   SmartDashboard.putNumber("ElevatorEncoderCounts",  getActualPosition());
  
-  SmartDashboard.putNumber("bullseyeElevatorPosition",  m_lastTargetPosition);
+  //SmartDashboard.putNumber("bullseyeElevatorPosition",  m_lastTargetPosition);
 }
 
   @Override
@@ -79,17 +79,15 @@ public void periodic() {
     m_elevator_talon.config_kI(0, 0.0, 30); 
     m_elevator_talon.config_kD(0, 0.0, 30); 
 
-    SmartDashboard.putNumber("MotorKF", 0.0); 
-    SmartDashboard.putNumber("MotorKp", 1.0);
-    SmartDashboard.putNumber("MotorKI", 0.0);
-    SmartDashboard.putNumber("MotorKD", 0.0);
+    //SmartDashboard.putNumber("MotorKF", 0.0); 
+    //SmartDashboard.putNumber("MotorKp", 1.0);
+    //SmartDashboard.putNumber("MotorKI", 0.0);
+    //SmartDashboard.putNumber("MotorKD", 0.0);
 
     SmartDashboard.putNumber("ElevatorEncoderCounts", getActualPosition());
 
-    SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
-    SmartDashboard.putNumber("ElevatorEncoderCounts", getActualPosition());
-
-    SmartDashboard.putNumber("ElevatorRampRate",0.1);
+    //SmartDashboard.putBoolean("ElevatorLimitSwitch", m_limitSwitchElevator.get());
+    //SmartDashboard.putNumber("ElevatorRampRate",0.1);
   
    
     

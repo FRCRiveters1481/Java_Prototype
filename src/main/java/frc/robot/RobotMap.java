@@ -57,8 +57,9 @@ public class RobotMap {
   public final static double elevatorTicksPerInch = 288.669f; /*  ticks */
   private final static int elevatorTicksAtBottomFromFloor = 2915; /* ticks */
   public static boolean elevatorIsUpFlag = false; // Flag to slow down driving when the elevator is up to avoid tippage
-  public final static int elevatorIsUpCountThreshold = 100;
+  public final static int elevatorIsUpCountThreshold = 6000; // This corresponds to approximately 30% up
   public final static double throttleFactorForElevatorUp = 0.5; // Factor to slow the joystick response by when the elevator is up 
+  public final static double steerFactorForElevatorUp = 0.75; // Factor to slow the joystick response by when the elevator is up
 
   public final static int driverController = 0; // driver joystick
   public final static int operatorController = 1; // operator joystick
@@ -73,9 +74,6 @@ public class RobotMap {
   public final static int leftDriveControllerSensor = intakeTalon1;
   public final static int rightDriveControllerSensor = intakeTalon2;
   
-
-  //public final static double intakeInSpeed = 0.5; // controls speed of motors for bringing in a cube
-  //public final static double intakeOutSpeed = -0.5; // controls speed of motors for shooting out a cube
   public final static double intakeHoldSpeed = 0.2; // controls speed of motors to hold cube
   public final static double joystickIsActive = 0.1; 
 
@@ -85,17 +83,10 @@ public class RobotMap {
 
   public final static int intakeInAxisNumber = 3;
   public final static int intakeOutAxisNumber = 2;
-  
-
 
   public final static int wristTalon = 8;
   public final static int wristUpAxisNumber = 2;
   public final static int wristDownAxisNumber = 3;
-
-  //public static double wristDownSpeed = -0.3;
-  //public static double wristUpSpeed = 0.75;
-  //public static double wristHoldSpeed = 0.4;
-  //public static int wristMotorStop = 0; 
 
   public static int wristRate = 2000; //encoder counts per 20 mil secs 
   public static int buttonWristFortyFiveButton = 2; // Takes wrist to 45 degree angle position
@@ -103,9 +94,8 @@ public class RobotMap {
   public static int buttonWristHorizontalButton = 1; // Takes wrist to horizontal (cube pickup)
   public static int wristJogLowerLimit = 100; // Don't go below this encoder count on the way down
   public static int wristJogUpperLimit = 890000; // Don't go above this encoder count on the way up
-  //public static int wristLimitSwitchInput = 2; // What is this when it is on the Talon?
   public static int wristZeroPositionCounts = 0; // Encoder coutns for wrist level with the floor
-  public static int wristFortyFivePositionCounts = 49000; // Encoder counts for wrist 45 degrees to the floor
+  public static int wristFortyFivePositionCounts = 60000; // Encoder counts for wrist 45 degrees to the floor
   public static int wristNinetyPositionCounts = 90000; // Encoder counts for wrist 90 degrees to the floor
 
 
