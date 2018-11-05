@@ -11,22 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.drive;
 
-public class DriveTurnToAngle extends Command {
 
-  private double m_angle;
-
-  public DriveTurnToAngle(double angle) {
+public class doNothing extends Command {
+  public doNothing() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_driveSubsystem);
-
-    m_angle = angle;
-
+      requires(Robot.m_driveSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.print(String.format("DriveTurnToAngle doesn't do anything yet, but you did request %.2f degrees of turn\n",m_angle));
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,7 +31,7 @@ public class DriveTurnToAngle extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

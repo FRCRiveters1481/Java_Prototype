@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import frc.robot.commands.autonTestCommand;
 
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+SendableChooser<Command> m_testChooser = new SendableChooser<>();
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -55,7 +57,13 @@ public class Robot extends TimedRobot {
     		//Camera initialization
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
 		camera1.setResolution(320, 240);
-		camera1.setFPS(15);
+    camera1.setFPS(15);
+    
+    m_testChooser.addDefault("doNothing",new doNothing());
+    m_testChooser.addObject("DriveDistanceCommand 100 inches",new DriveDistanceCommand(100.0));
+    m_testChooser.addObject("DriveDistanceCommand 100 inches",new DriveDistanceCommand(-100.0));
+    m_testChooser.addObject("DriveTurnToAngle 90 degrees",new DriveTurnToAngle(90.0));
+    m_testChooser.addObject("DriveTurnToAngle -90 degrees",new DriveTurnToAngle(-90.0));
   }
 
   /**
@@ -153,5 +161,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    LiveWindow.run();
+
+    Command testCommand = m_testChooser.getSelected();
+
+    // schedule the autonomous command (example)
+    if (testCommand != null) {
+      testCommand.start();
+    }
   }
 }

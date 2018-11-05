@@ -19,117 +19,67 @@ import frc.robot.commands.DrivetrainDriveSystemCommand;
 import edu.wpi.first.wpilibj.PIDController;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import java.util.HashMap;
+
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * An example subsystem. You can replace me with your own Subsystem.
  */
-public class drive extends PIDSubsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
-  private enum driveSide {Left, Right};
-
-WPI_VictorSPX m_frontLeft = new WPI_VictorSPX(RobotMap.frontLeftMotor);
-WPI_VictorSPX m_midLeft = new WPI_VictorSPX(RobotMap.middleLeftMotor);
-WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(RobotMap.backLeftMotor);
-
-SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
-
-WPI_VictorSPX m_frontRight = new WPI_VictorSPX(RobotMap.frontRightMotor);
-WPI_VictorSPX m_midRight = new WPI_VictorSPX(RobotMap.middleRightMotor);
-WPI_VictorSPX m_rearRight = new WPI_VictorSPX(RobotMap.backRightMotor);
-
-SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
-
-public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
-
-private SensorCollection m_leftSensor = new WPI_TalonSRX(RobotMap.leftDriveControllerSensor).getSensorCollection();
-private SensorCollection m_rightSensor = new WPI_TalonSRX(RobotMap.rightDriveControllerSensor).getSensorCollection();
+public class drive extends Subsystem {
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
 
-public drive() {
-   // Intert a subsystem name and PID values here
-   super("drive", 1.0 /* P */, 0.0 /* I */ , 0.0 /* D */);
-   // Use these to get going:
-   // setSetpoint() - Sets where the PID controller should move the system
-   // to
-   // enable() - Enables the PID controller.
-}
+	WPI_VictorSPX m_frontLeft = new WPI_VictorSPX(RobotMap.frontLeftMotor);
+	WPI_VictorSPX m_midLeft = new WPI_VictorSPX(RobotMap.middleLeftMotor);
+	WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(RobotMap.backLeftMotor);
 
-public void periodic() {
-  // Override me!
+	SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_midLeft, m_rearLeft);
 
-}
+	WPI_VictorSPX m_frontRight = new WPI_VictorSPX(RobotMap.frontRightMotor);
+	WPI_VictorSPX m_midRight = new WPI_VictorSPX(RobotMap.middleRightMotor);
+	WPI_VictorSPX m_rearRight = new WPI_VictorSPX(RobotMap.backRightMotor);
 
-/* Drive straight for distance, in inches */
-public void driveStraightDistance(double distance) {
+	SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_midRight, m_rearRight);
 
-  if (distance == 0.0) {
-    /* Disable the PID controller since we no longer need to drive anywhere. */
-    disable();
-
-    return;
-  }
-
-  driveResetDistanceTravelled();
-
-  setSetpoint(new RobotMap().convertInchesToDriveTicks(distance));
+	public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
 
 
-}
-
-private void driveResetDistanceTravelled() {
-   m_leftSensor.setQuadraturePosition(0,0);
-   m_rightSensor.setQuadraturePosition(0,0);
-}
-
-/* Compute the velocity of the drive motors by side in inches per second. */
-private double driveGetCurrentSpeed(driveSide side) {
-
-  int ticksPerUnitTime = 0;
-
-  switch (side) {
-    case Left:
-    ticksPerUnitTime = m_leftSensor.getQuadratureVelocity();
-    break;
-    case Right:
-    ticksPerUnitTime = m_rightSensor.getQuadratureVelocity();
-    break;
-    default:
-    break;
-  }
-
-  return new RobotMap().convertDriveTicksPerTimeToInchesPerSecond(ticksPerUnitTime);
-}
+  /* Create a Hash of sensors that contain the sensor collection
+     from the left and right sides of the robot.
+     Use the enums driveSide.Left and driveSide.Right to access the
+     encoders for the left and right sides of the robot from m_odometers */
+  public enum driveSide {
+		Left, Right
+	};
 
 
-@Override
-public void initDefaultCommand() {
-    //setDefaultCommand(new DriveCommand());
-    setDefaultCommand(new DrivetrainDriveSystemCommand());  
+	private static HashMap<driveSide, SensorCollection> m_odometers = new HashMap<>();
+	static {
+		m_odometers.put(driveSide.Left, new WPI_TalonSRX(RobotMap.leftDriveControllerSensor).getSensorCollection());
+		m_odometers.put(driveSide.Right, new WPI_TalonSRX(RobotMap.rightDriveControllerSensor).getSensorCollection());
+	}
 
-    // *** These 3 inversions are for 1481_Beta bot *** //
-    m_rearLeft.setInverted(true);//motor #3
-    m_frontLeft.setInverted(true);//motor #1
-    m_midLeft.setInverted(true);//motor #5
+	public void periodic() {
+		// Override me!
 
-    
-}
+	}
 
+	/* Compute the absolute distance travelled per a given side */
+	public double getCurrentDistance(driveSide side) {
+		int ticksOdometer = m_odometers.get(side).getQuadraturePosition();
+		return new RobotMap().convertDriveTicksToInches(ticksOdometer);
+	}
 
+	@Override
+	public void initDefaultCommand() {
 
-@Override
-protected double returnPIDInput() {
-  // Return your input value for the PID loop
+		setDefaultCommand(new DrivetrainDriveSystemCommand());
 
-  int averageDistanceTravelled = (m_leftSensor.getQuadraturePosition() + m_rightSensor.getQuadraturePosition() + 1) / 2;
-  return averageDistanceTravelled;
-}
+		// *** These 3 inversions are for 1481_Beta bot *** //
+		m_rearLeft.setInverted(true);// motor #3
+		m_frontLeft.setInverted(true);// motor #1
+		m_midLeft.setInverted(true);// motor #5
 
-@Override
-protected void usePIDOutput(double output) {
-  // Use output to drive your system, like a motor
-  // e.g. yourMotor.set(output);
+	}
 
-  m_drive.arcadeDrive(0.0, output);
-}
 }
