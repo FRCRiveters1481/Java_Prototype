@@ -15,6 +15,7 @@ public class autonTestCommand extends CommandGroup {
    * Add your docs here.
    */
   public autonTestCommand() {
+    addSequential(new IntakeEject());
     addSequential(new ElevatorGoToPosition(ElevatorGoToPosition.ElevatorPosition.switchHeight));
   }
 }
