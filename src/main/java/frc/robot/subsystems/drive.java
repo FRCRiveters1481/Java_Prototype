@@ -67,6 +67,10 @@ public class drive extends Subsystem {
 	/* Compute the absolute distance travelled per a given side */
 	public double getCurrentDistance(driveSide side) {
 		int ticksOdometer = m_odometers.get(side).getQuadraturePosition();
+		/* TODO: Find a better way to do this. */
+		if (side == driveSide.Right) {
+			ticksOdometer =  ticksOdometer * -1;
+		}
 		return new RobotMap().convertDriveTicksToInches(ticksOdometer);
 	}
 
@@ -79,6 +83,7 @@ public class drive extends Subsystem {
 		m_rearLeft.setInverted(true);// motor #3
 		m_frontLeft.setInverted(true);// motor #1
 		m_midLeft.setInverted(true);// motor #5
+
 
 	}
 

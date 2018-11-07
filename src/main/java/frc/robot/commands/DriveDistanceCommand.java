@@ -51,6 +51,8 @@ public class DriveDistanceCommand extends Command {
 		m_pidLeft.setAbsoluteTolerance(0.5);
 		m_pidRight.setAbsoluteTolerance(0.5);
 
+		m_pidLeft.setOutputRange(-0.6, 0.6);
+		m_pidRight.setOutputRange(-0.6, 0.6);
 		m_pidLeft.setSetpoint(setpoint);
 		m_pidRight.setSetpoint(setpoint);
 
@@ -125,7 +127,7 @@ public class DriveDistanceCommand extends Command {
 	private class pidOutputRight implements PIDOutput {
 		@Override
 		public void pidWrite(double output) {
-			m_outputRight = output;
+			m_outputRight = -output;
 		}
 	}
 
