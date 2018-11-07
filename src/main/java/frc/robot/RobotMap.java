@@ -97,6 +97,7 @@ public class RobotMap {
 	public static int wristZeroPositionCounts = 0; // Encoder coutns for wrist level with the floor
 	public static int wristFortyFivePositionCounts = 60000; // Encoder counts for wrist 45 degrees to the floor
 	public static int wristNinetyPositionCounts = 90000; // Encoder counts for wrist 90 degrees to the floor
+	public static int wristTenPositionCounts = 10000;
 
 	public int convertRelativeInchesToElevatorTicks(double inches) {
 		return (int) (inches * elevatorTicksPerInch);

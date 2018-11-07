@@ -7,7 +7,7 @@
 
 package frc.robot.commands;
 import frc.robot.commands.ElevatorGoToPosition;
-
+import frc.robot.commands.WristGoToPositionCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class autonTestCommand extends CommandGroup {
@@ -16,6 +16,7 @@ public class autonTestCommand extends CommandGroup {
    */
   public autonTestCommand() {
     addSequential(new ElevatorGoToPosition(ElevatorGoToPosition.ElevatorPosition.switchHeight));
+    addSequential(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Horizontal));
     addSequential(new IntakeEject());
     
   }

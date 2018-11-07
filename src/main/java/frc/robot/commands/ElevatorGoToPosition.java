@@ -50,15 +50,18 @@ public class ElevatorGoToPosition extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+   
     Robot.m_elevator.getActualPosition();
-    
-   if( Math.abs(Robot.m_elevator.getActualPosition() - getTargetHeight(m_position)) < RobotMap.elevatorTicksPerHalfInch )
+    double ElevatorDifference = Math.abs(Robot.m_elevator.getActualPosition() - getTargetHeight(m_position));
+    System.out.print(ElevatorDifference);
+   if( ElevatorDifference < RobotMap.elevatorTicksPerHalfInch )
     {
     return true;
     }
     else {
       return false;
     }
+    
   }
 
   // Called once after isFinished returns true
