@@ -30,7 +30,7 @@ public class IntakeEject extends Command {
   @Override
   protected void execute() {
     Robot.m_intake.setSpeed(.65);
-    System.out.print("hi setspeed\n");
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,8 @@ public class IntakeEject extends Command {
     {
       return false;
     }
-    
+        
+
     //TODO: check timer for 7 seconds elapse
   }
 

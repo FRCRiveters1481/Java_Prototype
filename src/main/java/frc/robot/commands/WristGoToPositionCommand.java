@@ -36,7 +36,17 @@ public class WristGoToPositionCommand extends Command {
   @Override
   protected void execute() {
 
-    
+   /* if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
+    {
+    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() - RobotMap.wristRate) ;
+    }
+    else if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
+    {
+      Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + RobotMap.wristRate) ;
+    }
+    else{
+    }
+    */
     switch (m_position) {
       case Up:
       Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts);
@@ -49,14 +59,22 @@ public class WristGoToPositionCommand extends Command {
       break;
 
     }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+     
+    if( Math.abs(Robot.m_wrist.getActualPosition() - getTargetPosition(m_position)) < RobotMap.wristTenPositionCounts)
+    {
+    return true;
+    }
+    else {
+      return false;
   }
 
+  }
   // Called once after isFinished returns true
   @Override
   protected void end() {
@@ -67,4 +85,20 @@ public class WristGoToPositionCommand extends Command {
   @Override
   protected void interrupted() {
   }
+  protected int getTargetPosition(WristPosition getTargetPosition){
+    switch (m_position) {
+      case Up:
+      Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts);
+      break;
+      case Horizontal:
+      Robot.m_wrist.setTargetPosition(RobotMap.wristZeroPositionCounts);
+      break;
+      case FortyFive:
+      Robot.m_wrist.setTargetPosition(RobotMap.wristFortyFivePositionCounts);
+
+    }
+  return (0); 
 }
+}
+
+

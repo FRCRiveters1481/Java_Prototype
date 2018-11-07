@@ -53,7 +53,8 @@ public class RobotMap {
 	public final static int elevatorRate = 200; // encoder counts per 20 mil secs
 	public final static double jogUpdateDistanceOvertravelOffset = 4.0; /* inches */
 	public final static double jogDownDistanceOvertravelOffset = 4.5; /* inches */
-	public final static double elevatorTicksPerInch = 288.669f; /* ticks */
+	public final static double elevatorTicksPerInch = 288.669; /* ticks */
+	public final static double elevatorTicksPerHalfInch = 144.3345;
 	private final static int elevatorTicksAtBottomFromFloor = 2915; /* ticks */
 	public static boolean elevatorIsUpFlag = false; // Flag to slow down driving when the elevator is up to avoid tippage
 	public final static int elevatorIsUpCountThreshold = 6000; // This corresponds to approximately 30% up
@@ -96,6 +97,7 @@ public class RobotMap {
 	public static int wristZeroPositionCounts = 0; // Encoder coutns for wrist level with the floor
 	public static int wristFortyFivePositionCounts = 60000; // Encoder counts for wrist 45 degrees to the floor
 	public static int wristNinetyPositionCounts = 90000; // Encoder counts for wrist 90 degrees to the floor
+	public static int wristTenPositionCounts = 10000;
 
 	public int convertRelativeInchesToElevatorTicks(double inches) {
 		return (int) (inches * elevatorTicksPerInch);
