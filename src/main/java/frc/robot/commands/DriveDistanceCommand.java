@@ -18,6 +18,8 @@ import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import MotionProfile.Profile;
+
 
 /**
  * A command to drive to a specified distance in inches using the drive encoders
@@ -31,8 +33,12 @@ public class DriveDistanceCommand extends Command {
 	private double m_outputLeft = 0;
 	private double m_outputRight = 0;
 
+	private Profile m_motionProfile;
+
 	private drivePIDSource m_distanceSourceLeft = new drivePIDSource(drive.driveSide.Left);
 	private drivePIDSource m_distanceSourceRight = new drivePIDSource(drive.driveSide.Right);
+
+	private long m_startOfProfileTimestamp;
 
 	/**
 	 * Requires DriveTrain
@@ -45,6 +51,10 @@ public class DriveDistanceCommand extends Command {
 
 		m_setpoint = setpoint;
 
+		m_motionProfile = Profile.getVelProfile(100000.0, 2.0, setpoint, 0.0, 0.0);
+
+		m_startOfProfileTimestamp = System.currentTimeMillis();
+
 		m_pidLeft = new PIDController(0.1, 0, 0, m_distanceSourceLeft, new pidOutputLeft());
 		m_pidRight = new PIDController(0.1, 0, 0, m_distanceSourceRight, new pidOutputRight());
 
@@ -53,12 +63,13 @@ public class DriveDistanceCommand extends Command {
 
 		m_pidLeft.setOutputRange(-0.6, 0.6);
 		m_pidRight.setOutputRange(-0.6, 0.6);
-		m_pidLeft.setSetpoint(setpoint);
-		m_pidRight.setSetpoint(setpoint);
+
+		m_pidLeft.setSetpoint(m_motionProfile.getDistAtTime(getMotionProfileElapsedTime()));
+		m_pidRight.setSetpoint(m_motionProfile.getDistAtTime(getMotionProfileElapsedTime()));
 
 		SmartDashboard.putNumber("DriveDistanceSetpoint", setpoint);
-    LiveWindow.addSensor("DriveDistanceCommand","LeftDrive",m_pidLeft);
-    LiveWindow.addSensor("DriveDistanceCommand","RightDrive",m_pidRight);
+		LiveWindow.addSensor("DriveDistanceCommand", "LeftDrive", m_pidLeft);
+		LiveWindow.addSensor("DriveDistanceCommand", "RightDrive", m_pidRight);
 	}
 
 	@Override
@@ -73,6 +84,10 @@ public class DriveDistanceCommand extends Command {
 
 	@Override
 	protected void execute() {
+
+		m_pidLeft.setSetpoint(m_motionProfile.getDistAtTime(getMotionProfileElapsedTime()));
+		m_pidRight.setSetpoint(m_motionProfile.getDistAtTime(getMotionProfileElapsedTime()));
+
 		Robot.m_driveSubsystem.m_drive.tankDrive(m_outputRight, m_outputLeft);
 
 		SmartDashboard.putNumber("DriveDistanceLeftOutput", m_outputLeft);
@@ -117,6 +132,10 @@ public class DriveDistanceCommand extends Command {
 		Robot.m_driveSubsystem.m_drive.arcadeDrive(0, 0);
 	}
 
+	private double getMotionProfileElapsedTime() {
+
+		return ((double)(System.currentTimeMillis() - m_startOfProfileTimestamp)) / 1000.0;
+	}
 	private class pidOutputLeft implements PIDOutput {
 		@Override
 		public void pidWrite(double output) {
