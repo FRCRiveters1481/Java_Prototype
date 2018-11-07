@@ -17,11 +17,13 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import frc.robot.commands.autonTestCommand;
+import edu.wpi.first.wpilibj.DriverStation;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -108,7 +110,17 @@ SendableChooser<Command> m_testChooser = new SendableChooser<>();
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
 
-    
+    String gameData;
+        gameData = DriverStation.getInstance().getGameSpecificMessage();
+        //switchSide = ' ';
+        //char scaleSide = ' ';
+        //try {
+        //    switchSide = gameData.charAt(0);
+        //    scaleSide = gameData.charAt(1);
+        //} catch (IndexOutOfBoundsException ex) {
+        //    System.out.println("No Game Data");
+        //}
+
       String autoSelected = SmartDashboard.getString("Auto Selector","Default"); 
       
       switch(autoSelected) { 
