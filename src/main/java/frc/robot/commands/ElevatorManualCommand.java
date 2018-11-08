@@ -24,7 +24,7 @@ public class ElevatorManualCommand extends Command {
     requires(Robot.m_elevator);
   
   }
-  public enum elevatorPosition {
+  public enum elevatorPosition {ClimbPosition,
     Hold, Floor , Switch, LowScale, HighScale;
   
   };
@@ -50,8 +50,11 @@ public ElevatorManualCommand(elevatorPosition commandedPosition){
     int POVJoystick = Robot.m_oi.operatorController.getPOV();
  
     switch (POVJoystick) {
+      case 270:
+      Robot.m_elevator.setTargetPosition(RobotMap.elevatorClimbPosition);
+      break;
       case 180:
-      Robot.m_elevator.setTargetPosition(RobotMap.elevatorFloorHeight) ;
+      Robot.m_elevator.setTargetPosition(RobotMap.elevatorFloorHeight);
       break;
       case 135:
       Robot.m_elevator.setTargetPosition(RobotMap.elevatorSwitchHeight);
