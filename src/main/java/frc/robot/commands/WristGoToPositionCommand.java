@@ -35,19 +35,19 @@ public class WristGoToPositionCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-   /* if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
+    if (Math.abs(Robot.m_wrist.getActualPosition()-getTargetPosition(m_position)) > RobotMap.wristRate) { 
+    if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
     {
-    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() - RobotMap.wristRate) ;
+    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + RobotMap.wristRate) ;
     }
-    else if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
+    else if(Robot.m_wrist.getActualPosition() > getTargetPosition(m_position))
     {
-      Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + RobotMap.wristRate) ;
+      Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() - RobotMap.wristRate) ;
     }
     else{
     }
-    */
-    switch (m_position) {
+  }
+   /* switch (m_position) {
       case Up:
       Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts);
       break;
@@ -59,6 +59,7 @@ public class WristGoToPositionCommand extends Command {
       break;
 
     }
+    */
     
   }
 
@@ -86,18 +87,25 @@ public class WristGoToPositionCommand extends Command {
   protected void interrupted() {
   }
   protected int getTargetPosition(WristPosition getTargetPosition){
-    switch (m_position) {
+    int TargetPosition;
+
+    
+    switch (getTargetPosition) {
       case Up:
-      Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts);
+      TargetPosition=RobotMap.wristNinetyPositionCounts;
       break;
       case Horizontal:
-      Robot.m_wrist.setTargetPosition(RobotMap.wristZeroPositionCounts);
+    TargetPosition=RobotMap.wristZeroPositionCounts;
       break;
       case FortyFive:
-      Robot.m_wrist.setTargetPosition(RobotMap.wristFortyFivePositionCounts);
+   TargetPosition=RobotMap.wristFortyFivePositionCounts;
+      break; 
+      default:
+      TargetPosition= 0;
+      break;
 
     }
-  return (0); 
+  return (TargetPosition); 
 }
 }
 
