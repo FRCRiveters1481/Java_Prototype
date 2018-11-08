@@ -43,6 +43,7 @@ public class RobotMap {
 	public final static int hold = -1;
 	public final static int elevatorFloorHeight = 0;
 	public final static int elevatorJogLowerLimit = 0;
+	public final static int elevatorClimbPosition = 12660;
 	public final static int elevatorSwitchHeight = 5168;
 	public final static int elevatorLowScaleHeight = 14116;
 	public final static int elevatorHighScaleHeight = 21044;
