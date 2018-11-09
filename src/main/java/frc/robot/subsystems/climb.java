@@ -27,6 +27,11 @@ public class climb extends Subsystem {
 
   public void setClimbVelocity(double velocity) {
 
+    /* Limit the climb speed and torque to match the mechanical
+    limits, including the ratchet. */
+    velocity = Math.min(RobotMap.ClimbSpeedMax, velocity);
+    velocity = Math.max(RobotMap.ClimbSpeedMin, velocity);
+    
     m_climb_talon.set(velocity);
   }
 

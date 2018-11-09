@@ -118,11 +118,15 @@ public class RobotMap {
 	}
 
 	public static int climb_talon = 9; /* CAN ID of the climb_talon */
-  public static int ClimbEnableButton = 8;
-  
-  /* This is the number of ticks per inch of wheel travel
-     at the robot's wheels */
-  public static double wheelTicksPerInch = 217.299549; 
+	public static int ClimbEnableButton = 9;
+	public static double ClimbSpeedMax = 0.0;
+	public static double ClimbSpeedMin = -1.0;
+	
+
+	/*
+	 * This is the number of ticks per inch of wheel travel at the robot's wheels
+	 */
+	public static double wheelTicksPerInch = 217.299549;
 
 	public double convertDriveTicksPerTimeToInchesPerSecond(int ticksPerUnitTime) {
 
@@ -131,6 +135,6 @@ public class RobotMap {
 
 	public double convertDriveTicksToInches(int ticks) {
 
-		return (double)  ((double)ticks / wheelTicksPerInch);
+		return (double) ((double) ticks / wheelTicksPerInch);
 	}
 }
