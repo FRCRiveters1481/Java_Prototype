@@ -53,8 +53,8 @@ SendableChooser<Command> m_testChooser = new SendableChooser<>();
   public void robotInit() {
     m_oi = new OI();
     m_chooser.addDefault("Default Auto", new autonTestCommand());
-    m_chooser.addObject("My Auto", new autonTestCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    m_chooser.addObject("Auto mode Drive Forward", new autonDriveForward());
+    SmartDashboard.putData("Auto mode Drive Forward", m_chooser);
 
     		//Camera initialization
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
@@ -127,7 +127,8 @@ SendableChooser<Command> m_testChooser = new SendableChooser<>();
         case "My Auto": 
         m_autonomousCommand = new autonTestCommand(); 
       break;
-       case "Default Auto": 
+       case "Auto mode Drive Forward": 
+       m_autonomousCommand = new autonDriveForward();
        default:
    
        break;
