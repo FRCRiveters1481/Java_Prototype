@@ -126,7 +126,7 @@ public class RobotMap {
 	/*
 	 * This is the number of ticks per inch of wheel travel at the robot's wheels
 	 */
-	public static double wheelTicksPerInch = 217.299549;
+	public static double wheelTicksPerInch = 197.55;
 
 	public double convertDriveTicksPerTimeToInchesPerSecond(int ticksPerUnitTime) {
 
