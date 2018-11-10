@@ -35,18 +35,21 @@ public class WristGoToPositionCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Math.abs(Robot.m_wrist.getActualPosition()-getTargetPosition(m_position)) > RobotMap.wristRate) { 
+    int calculatedWristRate;
+
+    calculatedWristRate = Math.min(Math.abs(Robot.m_wrist.getActualPosition()-getTargetPosition(m_position)), RobotMap.fastWristRate);
+
     if(Robot.m_wrist.getActualPosition() < getTargetPosition(m_position))
     {
-    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + RobotMap.wristRate) ;
+    Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() + calculatedWristRate) ;
     }
     else if(Robot.m_wrist.getActualPosition() > getTargetPosition(m_position))
     {
-      Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() - RobotMap.wristRate) ;
+      Robot.m_wrist.setTargetPosition(Robot.m_wrist.getActualPosition() - calculatedWristRate) ;
     }
     else{
     }
-  }
+  
    /* switch (m_position) {
       case Up:
       Robot.m_wrist.setTargetPosition(RobotMap.wristNinetyPositionCounts);
