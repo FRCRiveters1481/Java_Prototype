@@ -15,9 +15,9 @@ public class autonCloseSwitch extends CommandGroup {
    * Add your docs here.
    */
   public autonCloseSwitch() {
-        addSequential(new ElevatorGoToPosition(ElevatorGoToPosition.ElevatorPosition.switchHeight));
+    addSequential(new ElevatorGoToPosition(ElevatorGoToPosition.ElevatorPosition.switchHeight));
     addSequential(new DriveDistanceCommand(105.0));
-        addSequential(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Horizontal));
+    addSequential(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Horizontal));
     addSequential(new IntakeEject());
   }
 }

@@ -52,6 +52,7 @@ public class RobotMap {
 	public final static int elevatorJogUpButton = 5;
 	public final static int elevatorJogDownButton = 6;
 	public final static int elevatorRate = 200; // encoder counts per 20 mil secs
+	public final static double elevatorSpeed = 15.0; /* Inches per second */
 	public final static double jogUpdateDistanceOvertravelOffset = 4.0; /* inches */
 	public final static double jogDownDistanceOvertravelOffset = 4.5; /* inches */
 	public final static double elevatorTicksPerInch = 288.669; /* ticks */
@@ -102,6 +103,10 @@ public class RobotMap {
 	public static int fastWristRate = 15000;
 	public int convertRelativeInchesToElevatorTicks(double inches) {
 		return (int) (inches * elevatorTicksPerInch);
+	}
+
+	public double convertRelativeElevatorTicksToInches(int ticks) {
+		return (double) (ticks / elevatorTicksPerInch);
 	}
 
 	public int convertAbsoluteInchesToElevatorTicks(double inches) {

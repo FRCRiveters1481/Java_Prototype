@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import frc.robot.commands.autonTestCommand;
 import edu.wpi.first.wpilibj.DriverStation;
-
+import openrio.powerup.MatchData;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,159 +33,169 @@ import edu.wpi.first.wpilibj.DriverStation;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static OI m_oi;
-  public static drive m_driveSubsystem = new drive();
-  public static elevator m_elevator = new elevator();
-  public static intake m_intake = new intake(); 
-  public static wrist m_wrist = new wrist();
-  public static climb m_climb = new climb();
+	public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+	public static OI m_oi;
+	public static drive m_driveSubsystem = new drive();
+	public static elevator m_elevator = new elevator();
+	public static intake m_intake = new intake();
+	public static wrist m_wrist = new wrist();
+	public static climb m_climb = new climb();
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command m_autonomousCommand;
+	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-SendableChooser<Command> m_testChooser = new SendableChooser<>();
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
-  @Override
-  public void robotInit() {
-    m_oi = new OI();
-    m_chooser.addDefault("Default Auto doNothing", new autonDoNothing());
-  m_chooser.addObject("Auto mode Drive Forward", new autonDriveForward());
-  m_chooser.addObject("Auto mode Only Closest Switch", new autonCloseSwitch());
+	SendableChooser<Command> m_testChooser = new SendableChooser<>();
 
- SmartDashboard.putData("Auto mode Drive Forward", m_chooser);
-SmartDashboard.putData("Auto mode Only Closest Switch", m_chooser);
+	/**
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		m_oi = new OI();
+		m_chooser.addDefault("Default Auto doNothing", new autonDoNothing());
+		m_chooser.addObject("Auto mode Drive Forward", new autonDriveForward());
+		m_chooser.addObject("Auto mode Only Closest Switch", new autonCloseSwitch());
 
-    		//Camera initialization
+		SmartDashboard.putData("Auto mode Drive Forward", m_chooser);
+		SmartDashboard.putData("Auto mode Only Closest Switch Left side", m_chooser);
+		SmartDashboard.putData("Auto mode Only Closest Switch Right side", m_chooser);
+
+		// Camera initialization
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
 		camera1.setResolution(320, 240);
-    camera1.setFPS(15);
-    
-    m_testChooser.addDefault("doNothing",new doNothing());
-    m_testChooser.addObject("DriveDistanceCommand 100 inches",new DriveDistanceCommand(100.0));
-    m_testChooser.addObject("DriveDistanceCommand 100 inches",new DriveDistanceCommand(-100.0));
-    m_testChooser.addObject("DriveTurnToAngle 90 degrees",new DriveTurnToAngle(90.0));
-    m_testChooser.addObject("DriveTurnToAngle -90 degrees",new DriveTurnToAngle(-90.0));
-  }
+		camera1.setFPS(15);
 
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-    // Example modification to test vscode git
-  }
+		m_testChooser.addDefault("doNothing", new doNothing());
+		m_testChooser.addObject("DriveDistanceCommand 100 inches", new DriveDistanceCommand(100.0));
+		m_testChooser.addObject("DriveDistanceCommand 100 inches", new DriveDistanceCommand(-100.0));
+		m_testChooser.addObject("DriveTurnToAngle 90 degrees", new DriveTurnToAngle(90.0));
+		m_testChooser.addObject("DriveTurnToAngle -90 degrees", new DriveTurnToAngle(-90.0));
+	}
 
-  /**
-   * This function is called once each time the robot enters Disabled mode.
-   * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.
-   */
-  @Override
-  public void disabledInit() {
-  }
+	/**
+	 * This function is called every robot packet, no matter the mode. Use this for
+	 * items like diagnostics that you want ran during disabled, autonomous,
+	 * teleoperated and test.
+	 *
+	 * <p>
+	 * This runs after the mode specific periodic functions, but before LiveWindow
+	 * and SmartDashboard integrated updating.
+	 */
+	@Override
+	public void robotPeriodic() {
+		// Example modification to test vscode git
+	}
 
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-  }
+	/**
+	 * This function is called once each time the robot enters Disabled mode. You
+	 * can use it to reset any subsystem information you want to clear when the
+	 * robot is disabled.
+	 */
+	@Override
+	public void disabledInit() {
+	}
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString code to get the auto name from the text box below the Gyro
-   *
-   * <p>You can add additional auto modes by adding additional commands to the
-   * chooser code above (like the commented example) or additional comparisons
-   * to the switch structure below with additional strings & commands.
-   */
-  @Override
-  public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    String gameData;
-        gameData = DriverStation.getInstance().getGameSpecificMessage();
-        //switchSide = ' ';
-        //char scaleSide = ' ';
-        //try {
-        //    switchSide = gameData.charAt(0);
-        //    scaleSide = gameData.charAt(1);
-        //} catch (IndexOutOfBoundsException ex) {
-        //    System.out.println("No Game Data");
-        //}
+	/**
+	 * This autonomous (along with the chooser code above) shows how to select
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString code to get the
+	 * auto name from the text box below the Gyro
+	 *
+	 * <p>
+	 * You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons to
+	 * the switch structure below with additional strings & commands.
+	 */
+	@Override
+	public void autonomousInit() {
+		m_autonomousCommand = null;
 
-      String autoSelected = SmartDashboard.getString("Auto Selector","Default"); 
-      
-      switch(autoSelected) { 
-        case "My Auto": 
-        m_autonomousCommand = new autonTestCommand(); 
-      break;
-       case "Auto mode Drive Forward": 
-    //  m_autonomousCommand = new autonDriveForward();
-              case "Auto mode Only Closest Switch": 
-      // m_autonomousCommand = new autonCloseSwitch();
-       default:
-   
-       break;
-       }
-     
+		MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
+		if (switchSide == MatchData.OwnedSide.LEFT) {
+			// Do something with the left
+		} else if (switchSide == MatchData.OwnedSide.RIGHT) {
+			// Do something with the right
+		} else {
+			// Unknown
+		}
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
-  }
+		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
-  }
+		switch (autoSelected) {
+		case "My Auto":
+			m_autonomousCommand = new autonTestCommand();
+			break;
+		case "Auto mode Drive Forward":
+			m_autonomousCommand = new autonDriveForward();
+			break;
+		case "Auto mode Only Closest Switch Left side":
+			if (switchSide == MatchData.OwnedSide.LEFT) {
+				m_autonomousCommand = new autonCloseSwitch();
+			}
+			break;
+		case "Auto mode Only Closest Switch Right side":
+			if (switchSide == MatchData.OwnedSide.RIGHT) {
+				m_autonomousCommand = new autonCloseSwitch();
+			}
+		default:
 
-  @Override
-  public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
-  }
+			break;
+		}
 
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
+		// schedule the autonomous command (example)
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+		}
+	}
 
-  }
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
 
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() {
-    LiveWindow.run();
+	}
 
-    Command testCommand = m_testChooser.getSelected();
+	@Override
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
+	}
 
-    // schedule the autonomous command (example)
-    if (testCommand != null) {
-      testCommand.start();
-    }
-  }
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+
+	}
+
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
+		LiveWindow.run();
+
+		Command testCommand = m_testChooser.getSelected();
+
+		// schedule the autonomous command (example)
+		if (testCommand != null) {
+			testCommand.start();
+		}
+	}
 }
