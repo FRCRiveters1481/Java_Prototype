@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
 	public static climb m_climb = new climb();
 
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<String> m_chooser = new SendableChooser<>();
 
 	SendableChooser<Command> m_testChooser = new SendableChooser<>();
 
@@ -53,13 +53,13 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto doNothing", new autonDoNothing());
-		m_chooser.addObject("Auto mode Drive Forward", new autonDriveForward());
-		m_chooser.addObject("Auto mode Only Closest Switch", new autonCloseSwitch());
-
-		SmartDashboard.putData("Auto mode Drive Forward", m_chooser);
-		SmartDashboard.putData("Auto mode Only Closest Switch Left side", m_chooser);
-		SmartDashboard.putData("Auto mode Only Closest Switch Right side", m_chooser);
+		m_chooser.addDefault("Default Auto doNothing", "Default Auto doNothing") ;
+		m_chooser.addObject("Auto mode Drive Forward", "Auto mode Drive Forward") ;
+		
+		m_chooser.addObject("Auto mode Only Closest Switch Left side", "Auto mode Only Closest Switch Left side");
+		m_chooser.addObject("Auto mode Only Closest Switch Right side", "Auto mode Only Closest Switch Right side") ;
+		SmartDashboard.putData("Autonomous Selector", m_chooser);
+		
 
 		// Camera initialization
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture();
@@ -125,12 +125,12 @@ public class Robot extends TimedRobot {
 		} else {
 			// Unknown
 		}
-
-		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		
+		String autoSelected = m_chooser.getSelected();
 
 		switch (autoSelected) {
-		case "My Auto":
-			m_autonomousCommand = new autonTestCommand();
+		case "Default Auto doNothing":
+			m_autonomousCommand = new autonDoNothing();
 			break;
 		case "Auto mode Drive Forward":
 			m_autonomousCommand = new autonDriveForward();

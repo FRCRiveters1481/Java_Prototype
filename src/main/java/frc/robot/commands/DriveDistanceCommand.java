@@ -77,7 +77,7 @@ public class DriveDistanceCommand extends Command {
 		m_pidLeft.setSetpoint(m_setpoint);
 		m_pidRight.setSetpoint(m_setpoint);
 
-		setTimeout(Math.min(4.0, m_setpoint * 0.075));
+		//setTimeout(Math.min(4.0, m_setpoint * 0.150));
 
 		m_pidLeft.enable();
 		m_pidRight.enable();

@@ -15,6 +15,6 @@ public class autonDriveForward extends CommandGroup {
    * Add your docs here.
    */
   public autonDriveForward() {
-   addSequential(new DriveDistanceCommand(110.0));
+   addSequential(new DriveDistanceCommand(240.0));
   }
 }
