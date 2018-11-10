@@ -139,10 +139,16 @@ public class Robot extends TimedRobot {
 			if (switchSide == MatchData.OwnedSide.LEFT) {
 				m_autonomousCommand = new autonCloseSwitch();
 			}
+			else  {
+				m_autonomousCommand = new autonDriveForward();
+			}
 			break;
 		case "Auto mode Only Closest Switch Right side":
 			if (switchSide == MatchData.OwnedSide.RIGHT) {
 				m_autonomousCommand = new autonCloseSwitch();
+			}
+			else {
+				m_autonomousCommand = new autonDriveForward();
 			}
 		default:
 
