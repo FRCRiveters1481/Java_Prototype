@@ -19,7 +19,7 @@ public class IntakeEject extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_intake.setSpeed(.65);
+    Robot.m_intake.setSpeed(-.65);
     m_cubeTimeStamp =7000 + System.currentTimeMillis();
     System.out.print("init\n");
   
@@ -29,7 +29,7 @@ public class IntakeEject extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.setSpeed(.65);
+    Robot.m_intake.setSpeed(-.65);
 
   }
 

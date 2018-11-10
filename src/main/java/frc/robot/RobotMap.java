@@ -55,7 +55,7 @@ public class RobotMap {
 	public final static double jogUpdateDistanceOvertravelOffset = 4.0; /* inches */
 	public final static double jogDownDistanceOvertravelOffset = 4.5; /* inches */
 	public final static double elevatorTicksPerInch = 288.669; /* ticks */
-	public final static double elevatorTicksPerHalfInch = 144.3345;
+	public final static double elevatorTicksPerHalfInch = (3*144.3345);
 	private final static int elevatorTicksAtBottomFromFloor = 2915; /* ticks */
 	public static boolean elevatorIsUpFlag = false; // Flag to slow down driving when the elevator is up to avoid tippage
 	public final static int elevatorIsUpCountThreshold = 6000; // This corresponds to approximately 30% up

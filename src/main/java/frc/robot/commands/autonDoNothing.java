@@ -10,14 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class autonCloseSwitch extends CommandGroup {
+public class autonDoNothing extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public autonCloseSwitch() {
-        addSequential(new ElevatorGoToPosition(ElevatorGoToPosition.ElevatorPosition.switchHeight));
-    addSequential(new DriveDistanceCommand(105.0));
-        addSequential(new WristGoToPositionCommand(WristGoToPositionCommand.WristPosition.Horizontal));
-    addSequential(new IntakeEject());
+  public autonDoNothing() {
+
+    addSequential(new doNothing());
   }
 }
